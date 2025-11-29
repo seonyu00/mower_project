@@ -1,0 +1,16 @@
+running develop
+running egg_info
+writing mower_ai.egg-info/PKG-INFO
+writing dependency_links to mower_ai.egg-info/dependency_links.txt
+writing entry points to mower_ai.egg-info/entry_points.txt
+writing requirements to mower_ai.egg-info/requires.txt
+writing top-level names to mower_ai.egg-info/top_level.txt
+reading manifest file 'mower_ai.egg-info/SOURCES.txt'
+writing manifest file 'mower_ai.egg-info/SOURCES.txt'
+running build_ext
+Creating /home/sy/ros2_ws/install/mower_ai/lib/python3.10/site-packages/mower-ai.egg-link (link to .)
+Installing ai_controller script to /home/sy/ros2_ws/install/mower_ai/lib/mower_ai
+
+Installed /home/sy/ros2_ws/build/mower_ai
+running symlink_data
+symbolically linking /home/sy/ros2_ws/build/mower_ai/mower_ai/models/best_ever_2.pt -> /home/sy/ros2_ws/install/mower_ai/share/mower_ai/models

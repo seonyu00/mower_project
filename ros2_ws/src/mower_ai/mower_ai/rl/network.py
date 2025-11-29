@@ -14,18 +14,14 @@ class ResidualBlock(nn.Module):
 class Backbone(nn.Module):
     def __init__(self, obs_dim):
         super().__init__()
-        # 로그 분석 결과 반영:
-        # 1. (입력 100 -> 은닉 512)
-        # 2. (은닉 512 -> 은닉 512)
-        # 3. (은닉 512 -> 은닉 256)
         self.hidden_layers = nn.ModuleList([
-            ResidualBlock(obs_dim, 512),  # [수정] 256 -> 512
-            ResidualBlock(512, 512),      # [수정] 256 -> 512
-            ResidualBlock(512, 256)       # [수정] 입력 512, 출력 256
+            ResidualBlock(obs_dim, 256),  
+            ResidualBlock(256, 256),      
+            ResidualBlock(256, 128)       
         ])
         
         # 4. (은닉 256 -> 특징 384)
-        self.fc3 = nn.Linear(256, 384)
+        self.fc3 = nn.Linear(128, 256)
 
     def forward(self, x):
         for layer in self.hidden_layers:
@@ -39,8 +35,8 @@ class ActorCritic(nn.Module):
         self.backbone = Backbone(obs_dim)
         
         # Actor와 Critic은 384 차원의 특징을 입력받음
-        self.actor = nn.Linear(384, act_dim)
-        self.critic = nn.Linear(384, 1)
+        self.actor = nn.Linear(256, act_dim)
+        self.critic = nn.Linear(256, 1)
 
     def forward(self, x):
         features = self.backbone(x)

@@ -35,15 +35,20 @@ class AIParams:
     GLOBAL_HEIGHT_M = 20.0
 
     # 사람 감지 관련 파라미터
-    HUMAN_CONFIRM_TIME = 0.5  # 0.5초 이상 감지되어야 PPO 진입
-    HUMAN_CLEAR_TIME = 3.0    # 사람이 사라지고 3초 뒤에 복귀
-    HUMAN_DETECT_DIST = 3.0   # 3m 이내일 때만 반응
+    # HUMAN_CONFIRM_TIME = 0.5  # 0.5초 이상 감지되어야 PPO 진입
+    # HUMAN_CLEAR_TIME = 3.0    # 사람이 사라지고 3초 뒤에 복귀
+    # HUMAN_DETECT_DIST = 3.0   # 3m 이내일 때만 반응
+
+    # 진입: 1.0m * 2 = 2.0m (이 안으로 들어오면 PPO 켜짐)
+    # 해제: 1.4m * 2 = 2.8m (이 밖으로 나가야 PPO 꺼짐)
+    PPO_ENTER_DIST = 2.0  
+    PPO_EXIT_DIST  = 3.0
 
     ACTION_MAP = {
         0: (0.5, 0.0),   # 전진
-        1: (0.0, 0.8),   # 좌회전
+        1: (0.2, 1.2),   # 좌회전
         2: (-0.6, 0.0),  # 후진
-        3: (0.0, -0.8),  # 우회전
+        3: (0.2, -1.2),  # 우회전
         4: (0.0, 0.0),   # 정지
     }
     DANGER_M = 2.0 
@@ -71,7 +76,7 @@ class AiControllerNode(Node):
         # --- PPO 모델 로드 ---
         self.ppo_model = None
         try:
-            self.ppo_model = ActorCritic(obs_dim=100, act_dim=5)
+            self.ppo_model = ActorCritic(obs_dim=106, act_dim=5)
             package_dir = get_package_share_directory('mower_ai')
             model_path = os.path.join(package_dir, 'models', 'best_ever.pt')
             if os.path.exists(model_path):
@@ -89,6 +94,15 @@ class AiControllerNode(Node):
         self.current_pose_yaw = 0.0
         self.latest_obstacle_data = None # 단일 객체 저장용 (기존 로직 호환)
         self.latest_human_data = None
+
+        # 사람의 이동 방향 계산을 위한 과거 위치 저장 변수
+        self.prev_human_pos_x = None
+        self.prev_human_pos_y = None
+        self.human_move_cos = 0.0
+        self.human_move_sin = 0.0
+
+        # 사람 속도 저장 변수
+        self.human_speed_norm = 0.0
 
         self.visited_history = [] 
         self.last_record_pos = np.array([999.0, 999.0])
@@ -154,41 +168,70 @@ class AiControllerNode(Node):
     # 기존 장애물 데이터(self.latest_obstacle_data) 업데이트는 여기서 하지 않거나
     # 가장 가까운 객체로 업데이트합니다.
     def human_detection_callback(self, msgs):
-        # [디버깅] 데이터 수신 확인용 로그 (1초에 한 번만 출력)
+        # [디버깅] 데이터 수신 확인
         if len(msgs.objects) > 0:
             self.get_logger().info(f"Vision Recv: {len(msgs.objects)} objs", throttle_duration_sec=1.0)
 
-        detected = False
+        # 1. 사람 객체 필터링 및 최단 거리 데이터 추출
+        closest_person = None
         min_dist = 99.9
         
-        # 1. 사람 감지 여부 판단 (타이머 업데이트용)
         for obj in msgs.objects:
             if obj.label == "person":
-                if obj.distance < self.params.HUMAN_DETECT_DIST:
-                    if abs(obj.angle) < 60.0:
-                        detected = True
-                        min_dist = min(min_dist, obj.distance)
+                # 거리 조건 없이 일단 다 봅니다 (판단은 main_loop에서 함)
+                if obj.distance < min_dist:
+                    min_dist = obj.distance
+                    closest_person = obj
 
-        # 2. 타이머 로직 업데이트
-        if detected:
-            self.human_detect_timer += 0.1 
-            self.human_clear_timer = 0.0   
+        # 2. 데이터 업데이트 및 이동 방향 계산 (여기가 핵심!)
+        if closest_person:
+            self.latest_human_data = closest_person
+            
+            # (A) 현재 사람의 상대 좌표(x, y) 계산
+            # ROS 좌표계: x가 전방, y가 좌측
+            # distance와 angle(degree)을 이용해 좌표 변환
+            rad = np.deg2rad(closest_person.angle)
+            curr_x = closest_person.distance * np.cos(rad)
+            curr_y = closest_person.distance * np.sin(rad)
+            
+            # (B) 과거 데이터가 있다면 이동 벡터 계산
+            if self.prev_human_pos_x is not None:
+                dx = curr_x - self.prev_human_pos_x
+                dy = curr_y - self.prev_human_pos_y
+                dist_moved = np.hypot(dx, dy) # 이동 거리
+                
+                # 움직임이 감지되면 (노이즈 0.05m 이상)
+                if dist_moved > 0.05:
+                    move_angle = np.arctan2(dy, dx)
+                    self.human_move_cos = np.cos(move_angle)
+                    self.human_move_sin = np.sin(move_angle)
+                    # 속도 계산 (callback은 약 0.1초마다 불린다고 가정 or 시간차 계산)
+                    # 정확히 하려면 time.time()을 써야 하지만, 여기서는 단순 추정
+                    # 속도 = 거리 / 시간(약 0.1s) -> 거리 * 10
+                    estimated_speed = dist_moved * 10.0 
+                    
+                    # 정규화 (최대 1.5m/s로 나눔)
+                    self.human_speed_norm = min(estimated_speed, self.params.VMAX_OBJ) / self.params.VMAX_OBJ
+                    # self.get_logger().info(f"Human Moving: dx={dx:.2f}, dy={dy:.2f}")
+                else:
+                    # 거의 안 움직이면 0으로 (또는 이전 값 유지)
+                    self.human_move_cos = 0.0
+                    self.human_move_sin = 0.0
+                    self.human_speed_norm = 0.0 # 속도 0
+            
+            # (C) 현재 위치를 과거 위치로 저장 (다음 턴을 위해)
+            self.prev_human_pos_x = curr_x
+            self.prev_human_pos_y = curr_y
+            
         else:
-            self.human_detect_timer = 0.0  
-            self.human_clear_timer += 0.1  
+            self.latest_human_data = None
+            # 사람이 사라지면 초기화
+            self.prev_human_pos_x = None
+            self.prev_human_pos_y = None
+            self.human_move_cos = 0.0
+            self.human_move_sin = 0.0
+            self.human_speed_norm = 0.0 # 초기화
         
-        # 3. 기존 주행 로직 호환성을 위해 가장 가까운 객체 하나를 저장 
-        #  감지된 경우, 가장 가까운 사람 정보를 '전용 변수'에 저장
-        if len(msgs.objects) > 0:
-             # 사람 라벨인 것 중 가장 가까운 것 찾기
-             people = [obj for obj in msgs.objects if obj.label == "person"]
-             if people:
-                 self.latest_human_data = min(people, key=lambda x: x.distance)
-             else:
-                 self.latest_human_data = None
-        else:
-             self.latest_human_data = None
-
     def scan_callback(self, msg: LaserScan):
         if len(msg.ranges) == 0: return
         raw = np.array(msg.ranges, dtype=np.float32)
@@ -358,11 +401,20 @@ class AiControllerNode(Node):
             self.get_logger().info(f"PPO Dynamic Target: WP {current_target_idx}", throttle_duration_sec=2.0)
 
         # 1. Goal Info (3)
-        target = self.global_path[current_target_idx] if current_target_idx < len(self.global_path) else self.global_path[-1]
-        dx = target[0] - self.current_pose_xy[0]
-        dy = target[1] - self.current_pose_xy[1]
-        dist = np.hypot(dx, dy)
-        angle = np.arctan2(dy, dx) - self.current_pose_yaw
+        if not self.global_path:
+            # 경로가 없으면 목표도 없는 것이므로 거리 0, 각도 0으로 설정 (에러 방지)
+            dist = 0.0
+            angle = 0.0
+        else:
+            # 경로가 있을 때만 인덱스로 접근
+            # 인덱스가 범위를 벗어나지 않게 안전장치(min) 한번 더 적용
+            safe_idx = min(current_target_idx, len(self.global_path) - 1)
+            target = self.global_path[safe_idx]
+            
+            dx = target[0] - self.current_pose_xy[0]
+            dy = target[1] - self.current_pose_xy[1]
+            dist = np.hypot(dx, dy)
+            angle = np.arctan2(dy, dx) - self.current_pose_yaw
         
         # 각도 정규화 (-PI ~ PI)
         while angle > np.pi: angle -= 2 * np.pi
@@ -372,32 +424,39 @@ class AiControllerNode(Node):
                       np.cos(angle), 
                       np.sin(angle)
                     ]
-        # 2. Obstacle Info (15)
+        # 2. Obstacle Info (15) -> (21)
         obj_feats = []
-        # [논리적 수정] 모드에 따라 AI에게 주입할 데이터를 결정
+        # 모드에 따라 AI에게 주입할 데이터를 결정
         target_obs = None
+
         if self.current_state == State.PPO_HUMAN_AVOID:
-            # 사람 회피 모드면 -> 카메라 데이터(human_data)를 최우선으로 사용
-            if self.latest_human_data:
-                target_obs = self.latest_human_data
-            else:
-                target_obs = self.latest_obstacle_data # 없으면 기존 데이터라도
+            target_obs = self.latest_human_data if self.latest_human_data else self.latest_obstacle_data
         else:
-            # 평상시 -> 기존 장애물 데이터 사용
             target_obs = self.latest_obstacle_data
 
-        # 선택된 데이터로 특징 벡터 생성
         if target_obs and target_obs.detected:
-             # 거리 정규화
-             d = min(target_obs.distance, self.params.R_OBJ_M) / self.params.R_OBJ_M
-             # 각도
+             fake_dist = max(0.0, target_obs.distance - 1.0)
+             d = min(fake_dist, self.params.R_OBJ_M) / self.params.R_OBJ_M
+             # d = min(target_obs.distance, self.params.R_OBJ_M) / self.params.R_OBJ_M
              ang = np.deg2rad(target_obs.angle)
-             #  vx, vy를 0.5로 설정 (정지한 물체로 가정하되 존재감 부각)
-             obj_feats.extend([d, np.cos(ang), np.sin(ang), 0.5, 0.5]) 
+             
+              # [수정] 학습 환경의 7개 Feature 순서에 맞춰 데이터 주입
+             # 순서: [dist, cos, sin, speed, ttc, move_cos, move_sin]
+             obj_feats.extend([
+                 d, 
+                 np.cos(ang), 
+                 np.sin(ang), 
+                 self.human_speed_norm,  
+                 0.5,                    # TTC는 계산 어려우므로 0.5 유지 (중간값)
+                 self.human_move_cos, 
+                 self.human_move_sin
+             ]) 
         
-        # 패딩 채우기 (기존 동일)
-        while len(obj_feats) < 15:
-            obj_feats.extend([1.0, 0.0, 0.0, 0.0, 1.0])
+        # 패딩 채우기 (3마리 * 7개 = 21개가 될 때까지)
+        while len(obj_feats) < 21: # [수정] 15 -> 21
+            # 빈 슬롯 채울 때도 7개씩 채워야 함
+            # [dist=1.0, cos=0, sin=0, speed=0, ttc=1, move_cos=0, move_sin=0]
+            obj_feats.extend([1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0])
 
 
         # 3. Lidar (64)
@@ -408,7 +467,7 @@ class AiControllerNode(Node):
         danger_lidar = np.zeros(16, dtype=np.float32)
         # 최종 결합 (총 100차원)
         return np.concatenate([goal_feats,      # 3
-                               obj_feats,       # 15
+                               obj_feats,       # 21
                                lidar_feats,     # 64
                                danger_scalar,   # 2
                                danger_lidar     # 16
@@ -417,16 +476,34 @@ class AiControllerNode(Node):
     def main_loop(self):
         twist = Twist()
         
+         # 1. 현재 사람과의 거리 계산 (없으면 무한대)
+        current_human_dist = 99.9
+        if self.latest_human_data:
+            current_human_dist = self.latest_human_data.distance
+
         # ------------------------------------------------------------------
-        # [1] 전역 상태 전이 체크 (어떤 상태에서든 사람 감지되면 납치)
+        # [수정] 전역 상태 전이 (거리 기반 히스테리시스)
         # ------------------------------------------------------------------
+        
+        # (A) 진입 조건: 평상시인데, 사람이 진입 거리(2.0m)보다 가까워지면 -> PPO ON
         if self.current_state != State.PPO_HUMAN_AVOID:
-            # 콜백에서 업데이트된 타이머를 확인
-            if self.human_detect_timer >= self.params.HUMAN_CONFIRM_TIME:
-                self.get_logger().warn("🚨 HUMAN DETECTED! Switching to PPO.")
+            if current_human_dist < self.params.PPO_ENTER_DIST:
+                self.get_logger().warn(f"🚨 HUMAN NEAR ({current_human_dist:.1f}m)! PPO ON.")
                 self.current_state = State.PPO_HUMAN_AVOID
-                self.human_detect_timer = 0
-                self.human_clear_timer = 0
+                self.action_lock_timer = 0 # 액션 락 초기화
+        
+        # (B) 해제 조건: PPO 중인데, 사람이 해제 거리(2.8m)보다 멀어지거나 사라지면 -> PPO OFF
+        elif self.current_state == State.PPO_HUMAN_AVOID:
+            # 사람이 아예 사라졌거나(None) or 안전 거리(2.8m) 밖으로 나갔으면
+            if self.latest_human_data is None or current_human_dist > self.params.PPO_EXIT_DIST:
+                self.get_logger().info(f"✅ Human Safe ({current_human_dist:.1f}m). Return to Plan.")
+                
+                # 안전해지면 다시 경로 계획부터 시작
+                self.current_state = State.PLANNING
+                self.global_path = []
+                self.latest_human_data = None
+                self.action_lock_timer = 0
+                return # 이번 턴 종료
     
         # --- 상태 머신 ---
         # 지도 올 때까지 정지
@@ -632,36 +709,27 @@ class AiControllerNode(Node):
         #  사람 회피 모드 (PPO)
         # =================================================================
         elif self.current_state == State.PPO_HUMAN_AVOID:
-             # [안전 장치] 사람이 너무 가까우면(1.5m 이내) PPO고 뭐고 일단 급정지
-            if self.latest_human_data and self.latest_human_data.distance < 1.5:
-                self.get_logger().error("🚨 HUMAN TOO CLOSE! EMERGENCY STOP!", throttle_duration_sec=1.0)
-                twist.linear.x = 0.0
+            
+            # [안전 장치] 1.0m 이내 후진 로직은 유지 (최후의 보루)
+            if current_human_dist < 0.7:
+                self.get_logger().warn("🚨 TOO CLOSE! Backing up...", throttle_duration_sec=1.0)
+                twist.linear.x = -0.4
                 twist.angular.z = 0.0
                 self.cmd_vel_publisher.publish(twist)
-                self.action_lock_timer = 0 # 락 초기화
-                return # PPO 실행 스킵
-            
-            # 1. 탈출 조건 (3초 동안 사람 없으면 복귀)
-            if self.human_clear_timer >= self.params.HUMAN_CLEAR_TIME:
-                self.get_logger().info("✅ Human Clear. Re-planning path...")
-                # 안전해지면 다시 경로 계획부터 시작 
-                self.current_state = State.PLANNING
-                self.global_path = [] 
-                self.human_clear_timer = 0
-                self.action_lock_timer = 0 # 락 초기화
                 return 
 
-            # 2. PPO 실행 (Action Locking 적용)
-            if self.ppo_model:
-                action = 4 # 기본 정지
+            # (기존의 시간 기반 탈출 조건 삭제됨 -> 위쪽 전역 체크에서 처리함)
 
-                # (A) 락이 걸려있으면 -> AI한테 묻지 말고 저장된 행동 반복
+            # 2. PPO 실행 (Action Locking 유지)
+            if self.ppo_model:
+                action = 4 
+                
+                # (A) 락이 걸려있으면
                 if self.action_lock_timer > 0:
                     action = self.locked_action
                     self.action_lock_timer -= 1
-                    # self.get_logger().info(f"🔒 Locked Action: {action} (Rem: {self.action_lock_timer})")
                 
-                # (B) 락이 없으면 -> AI에게 물어봄
+                # (B) 락이 없으면
                 else:
                     obs = self.build_state_for_ppo()
                     with torch.no_grad():
@@ -669,20 +737,15 @@ class AiControllerNode(Node):
                         logits, _ = self.ppo_model(tensor)
                         action = torch.argmax(logits).item()
                     
-                    # [핵심 로직] 회전 행동(1:좌, 3:우)이 나오면 락을 건다!
-                    # 1(Left), 3(Right)일 경우에만 5프레임(0.5초) 동안 유지
-                    # 0(Forward)이나 2(Back)는 즉각 반응해도 괜찮음
+                    # 회전(1, 3) 시 0.5초 락킹
                     if action == 1 or action == 3:
-                        self.action_lock_timer = 5  # 0.1초 * 5 = 0.5초 동안 유지
+                        self.action_lock_timer = 5 
                         self.locked_action = action
-                        self.get_logger().warn(f"🤖 PPO Turn START! Action {action} Locked for 0.5s")
-                    
-                    # 후진(2)의 경우도 조금 길게 잡아주면 좋음
+                        self.get_logger().info(f"Action Lock: {action}")
                     elif action == 2:
-                        self.action_lock_timer = 3  # 0.3초
+                        self.action_lock_timer = 3
                         self.locked_action = action
 
-                # 액션 실행
                 lx, az = self.params.ACTION_MAP[action]
                 twist.linear.x = lx
                 twist.angular.z = az

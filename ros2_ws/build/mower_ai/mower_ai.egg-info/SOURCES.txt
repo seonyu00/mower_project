@@ -14,6 +14,7 @@ mower_ai.egg-info/requires.txt
 mower_ai.egg-info/top_level.txt
 mower_ai.egg-info/zip-safe
 mower_ai/models/best_ever.pt
+mower_ai/models/best_ever_2.pt
 mower_ai/planning/__init__.py
 mower_ai/planning/cpp.py
 mower_ai/rl/__init__.py
