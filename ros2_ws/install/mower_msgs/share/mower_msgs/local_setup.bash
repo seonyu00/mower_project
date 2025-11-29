@@ -1,0 +1,1 @@
+/home/sy/ros2_ws/build/mower_msgs/ament_cmake_environment_hooks/local_setup.bash

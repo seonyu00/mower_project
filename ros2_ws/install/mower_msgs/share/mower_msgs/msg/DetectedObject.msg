@@ -1,0 +1,1 @@
+/home/sy/ros2_ws/src/mower_msgs/msg/DetectedObject.msg

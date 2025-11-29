@@ -1,0 +1,26 @@
+running develop
+running egg_info
+creating mower_ai.egg-info
+writing mower_ai.egg-info/PKG-INFO
+writing dependency_links to mower_ai.egg-info/dependency_links.txt
+writing entry points to mower_ai.egg-info/entry_points.txt
+writing requirements to mower_ai.egg-info/requires.txt
+writing top-level names to mower_ai.egg-info/top_level.txt
+writing manifest file 'mower_ai.egg-info/SOURCES.txt'
+reading manifest file 'mower_ai.egg-info/SOURCES.txt'
+writing manifest file 'mower_ai.egg-info/SOURCES.txt'
+running build_ext
+Creating /home/sy/ros2_ws/install/mower_ai/lib/python3.10/site-packages/mower-ai.egg-link (link to .)
+Installing ai_controller script to /home/sy/ros2_ws/install/mower_ai/lib/mower_ai
+
+Installed /home/sy/ros2_ws/build/mower_ai
+running symlink_data
+creating /home/sy/ros2_ws/install/mower_ai/share/ament_index
+creating /home/sy/ros2_ws/install/mower_ai/share/ament_index/resource_index
+creating /home/sy/ros2_ws/install/mower_ai/share/ament_index/resource_index/packages
+symbolically linking /home/sy/ros2_ws/build/mower_ai/resource/mower_ai -> /home/sy/ros2_ws/install/mower_ai/share/ament_index/resource_index/packages
+symbolically linking /home/sy/ros2_ws/build/mower_ai/package.xml -> /home/sy/ros2_ws/install/mower_ai/share/mower_ai
+creating /home/sy/ros2_ws/install/mower_ai/share/mower_ai/launch
+symbolically linking /home/sy/ros2_ws/build/mower_ai/launch/mower_launch.py -> /home/sy/ros2_ws/install/mower_ai/share/mower_ai/launch
+creating /home/sy/ros2_ws/install/mower_ai/share/mower_ai/config
+symbolically linking /home/sy/ros2_ws/build/mower_ai/config/slam.yaml -> /home/sy/ros2_ws/install/mower_ai/share/mower_ai/config

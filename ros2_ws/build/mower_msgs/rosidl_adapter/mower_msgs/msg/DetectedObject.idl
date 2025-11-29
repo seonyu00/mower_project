@@ -1,0 +1,20 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from mower_msgs/msg/DetectedObject.msg
+// generated code does not contain a copyright notice
+
+
+module mower_msgs {
+  module msg {
+    @verbatim (language="comment", text=
+      "이 메시지는 단일 탐지 객체에 대한 정보를 담습니다.")
+    struct DetectedObject {
+      string label;
+
+      boolean detected;
+
+      float distance;
+
+      float angle;
+    };
+  };
+};

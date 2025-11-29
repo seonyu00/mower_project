@@ -1,0 +1,1 @@
+/home/sy/ros2_ws/build/mower_msgs/ament_cmake_python/mower_msgs/mower_msgs.egg-info/top_level.txt

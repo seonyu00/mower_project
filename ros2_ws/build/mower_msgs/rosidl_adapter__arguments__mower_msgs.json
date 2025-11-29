@@ -1,0 +1,7 @@
+{
+  "package_name": "mower_msgs",
+  "non_idl_tuples": [
+    "/home/sy/ros2_ws/src/mower_msgs:msg/DetectedObject.msg",
+    "/home/sy/ros2_ws/src/mower_msgs:msg/DetectedObjectList.msg"
+  ]
+}

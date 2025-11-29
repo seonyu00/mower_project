@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<robot name="mower_bot">
+
+  <!-- 로봇의 몸통 색상 정의 -->
+  <material name="orange">
+    <color rgba="1.0 0.5 0.0 1.0"/>
+  </material>
+
+  <!-- 베이스 링크 (몸통) -->
+  <link name="base_link">
+    <visual>
+      <origin xyz="0 0 0.1" rpy="0 0 0"/> <!-- 바닥에서 살짝 띄움 -->
+      <geometry>
+        <box size="0.5 0.5 0.2"/> <!-- 로봇 크기 (Unity와 비슷하게 설정) -->
+      </geometry>
+      <material name="orange"/>
+    </visual>
+  </link>
+
+  <!-- 라이다 센서 (작은 원기둥) -->
+  <link name="laser_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder length="0.05" radius="0.05"/>
+      </geometry>
+      <material name="black">
+          <color rgba="0 0 0 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <!-- 몸통과 라이다 연결 (고정) -->
+  <joint name="base_to_laser" type="fixed">
+    <parent link="base_link"/>
+    <child link="laser_link"/>
+    <origin xyz="0 0 0.2" rpy="0 0 0"/> <!-- 라이다 위치 -->
+  </joint>
+
+</robot>

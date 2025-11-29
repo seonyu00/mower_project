@@ -1,0 +1,1 @@
+/home/sy/ros2_ws/build/mower_msgs/rosidl_generator_c/mower_msgs/msg/detail/detected_object__struct.h

@@ -1,0 +1,201 @@
+[0.041s] Invoking command in '/home/sy/ros2_ws/build/mower_msgs': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/sy/ros2_ws/install/ros_tcp_endpoint:/home/sy/ros2_ws/install/mower_ai:/opt/ros/humble /usr/bin/cmake /home/sy/ros2_ws/src/mower_msgs -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/sy/ros2_ws/install/mower_msgs
+[0.537s] -- The C compiler identification is GNU 11.4.0
+[1.939s] -- The CXX compiler identification is GNU 11.4.0
+[2.667s] -- Detecting C compiler ABI info
+[2.927s] -- Detecting C compiler ABI info - done
+[2.936s] -- Check for working C compiler: /usr/bin/cc - skipped
+[2.948s] -- Detecting C compile features
+[2.949s] -- Detecting C compile features - done
+[2.956s] -- Detecting CXX compiler ABI info
+[3.208s] -- Detecting CXX compiler ABI info - done
+[3.219s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[3.219s] -- Detecting CXX compile features
+[3.220s] -- Detecting CXX compile features - done
+[3.247s] -- Found ament_cmake: 1.3.12 (/opt/ros/humble/share/ament_cmake/cmake)
+[3.464s] -- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter 
+[3.573s] -- Override CMake install command with custom implementation using symlinks instead of copying resources
+[3.635s] -- Found rosidl_default_generators: 1.2.0 (/opt/ros/humble/share/rosidl_default_generators/cmake)
+[3.642s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[3.658s] -- Found rosidl_adapter: 3.1.7 (/opt/ros/humble/share/rosidl_adapter/cmake)
+[4.041s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[4.449s] -- Found ament_cmake_ros: 0.10.0 (/opt/ros/humble/share/ament_cmake_ros/cmake)
+[4.717s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[5.013s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[5.267s] -- Found PythonInterp: /usr/bin/python3 (found suitable version "3.10.12", minimum required is "3.6") 
+[5.272s] -- Found python_cmake_module: 0.10.0 (/opt/ros/humble/share/python_cmake_module/cmake)
+[6.086s] -- Found PythonLibs: /usr/lib/x86_64-linux-gnu/libpython3.10.so (found suitable version "3.10.12", minimum required is "3.5") 
+[6.086s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[6.086s] -- Using PYTHON_INCLUDE_DIRS: /usr/include/python3.10
+[6.086s] -- Using PYTHON_LIBRARIES: /usr/lib/x86_64-linux-gnu/libpython3.10.so
+[6.114s] -- Found PythonExtra: .so  
+[6.245s] -- Found ament_lint_auto: 0.12.14 (/opt/ros/humble/share/ament_lint_auto/cmake)
+[6.293s] -- Added test 'lint_cmake' to check CMake code style
+[6.297s] -- Added test 'xmllint' to check XML markup files
+[6.304s] -- Configuring done
+[6.384s] -- Generating done
+[6.403s] -- Build files have been written to: /home/sy/ros2_ws/build/mower_msgs
+[6.417s] Invoked command in '/home/sy/ros2_ws/build/mower_msgs' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/sy/ros2_ws/install/ros_tcp_endpoint:/home/sy/ros2_ws/install/mower_ai:/opt/ros/humble /usr/bin/cmake /home/sy/ros2_ws/src/mower_msgs -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/sy/ros2_ws/install/mower_msgs
+[6.420s] Invoking command in '/home/sy/ros2_ws/build/mower_msgs': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/sy/ros2_ws/install/ros_tcp_endpoint:/home/sy/ros2_ws/install/mower_ai:/opt/ros/humble /usr/bin/cmake --build /home/sy/ros2_ws/build/mower_msgs -- -j16 -l16
+[6.470s] [  3%] [34m[1mGenerating C code for ROS interfaces[0m
+[6.483s] [  6%] [34m[1mGenerating C++ code for ROS interfaces[0m
+[6.495s] [  6%] Built target ament_cmake_python_symlink_mower_msgs
+[6.845s] running egg_info
+[6.846s] creating mower_msgs.egg-info
+[6.847s] writing mower_msgs.egg-info/PKG-INFO
+[6.847s] writing dependency_links to mower_msgs.egg-info/dependency_links.txt
+[6.848s] writing top-level names to mower_msgs.egg-info/top_level.txt
+[6.848s] writing manifest file 'mower_msgs.egg-info/SOURCES.txt'
+[6.858s] reading manifest file 'mower_msgs.egg-info/SOURCES.txt'
+[6.858s] writing manifest file 'mower_msgs.egg-info/SOURCES.txt'
+[6.876s] [  6%] Built target mower_msgs__cpp
+[6.890s] [ 12%] [34m[1mGenerating C++ introspection for ROS interfaces[0m
+[6.890s] [ 12%] [32mBuilding C object CMakeFiles/mower_msgs__rosidl_generator_c.dir/rosidl_generator_c/mower_msgs/msg/detail/detected_object__functions.c.o[0m
+[6.890s] [ 16%] [34m[1mGenerating C++ type support dispatch for ROS interfaces[0m
+[6.890s] [ 19%] [34m[1mGenerating C++ type support for eProsima Fast-RTPS[0m
+[6.900s] [ 19%] Built target ament_cmake_python_build_mower_msgs_egg
+[6.983s] [ 22%] [32m[1mLinking C shared library libmower_msgs__rosidl_generator_c.so[0m
+[7.185s] [ 25%] [32mBuilding CXX object CMakeFiles/mower_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/mower_msgs/msg/detected_object__type_support.cpp.o[0m
+[7.210s] [ 29%] [32mBuilding CXX object CMakeFiles/mower_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/mower_msgs/msg/detail/detected_object__type_support.cpp.o[0m
+[7.211s] [ 29%] Built target mower_msgs__rosidl_generator_c
+[7.227s] [ 35%] [32mBuilding CXX object CMakeFiles/mower_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/mower_msgs/msg/detail/dds_fastrtps/detected_object__type_support.cpp.o[0m
+[7.227s] [ 35%] [34m[1mGenerating C type support dispatch for ROS interfaces[0m
+[7.227s] [ 38%] [34m[1mGenerating C introspection for ROS interfaces[0m
+[7.228s] [ 41%] [34m[1mGenerating C type support for eProsima Fast-RTPS[0m
+[7.601s] [ 45%] [32mBuilding CXX object CMakeFiles/mower_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/mower_msgs/msg/detected_object__type_support.cpp.o[0m
+[7.641s] [ 48%] [32mBuilding C object CMakeFiles/mower_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/mower_msgs/msg/detail/detected_object__type_support.c.o[0m
+[7.648s] [ 51%] [32m[1mLinking CXX shared library libmower_msgs__rosidl_typesupport_c.so[0m
+[7.656s] [ 54%] [32mBuilding CXX object CMakeFiles/mower_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/mower_msgs/msg/detail/detected_object__type_support_c.cpp.o[0m
+[7.671s] [ 58%] [32m[1mLinking CXX shared library libmower_msgs__rosidl_typesupport_cpp.so[0m
+[7.696s] [ 61%] [32m[1mLinking C shared library libmower_msgs__rosidl_typesupport_introspection_c.so[0m
+[7.827s] [ 64%] [32m[1mLinking CXX shared library libmower_msgs__rosidl_typesupport_introspection_cpp.so[0m
+[7.841s] [ 67%] [32m[1mLinking CXX shared library libmower_msgs__rosidl_typesupport_fastrtps_cpp.so[0m
+[7.935s] [ 67%] Built target mower_msgs__rosidl_typesupport_c
+[7.943s] [ 67%] Built target mower_msgs__rosidl_typesupport_cpp
+[7.952s] [ 67%] Built target mower_msgs__rosidl_typesupport_introspection_c
+[8.062s] [ 67%] Built target mower_msgs__rosidl_typesupport_introspection_cpp
+[8.116s] [ 70%] [32m[1mLinking CXX shared library libmower_msgs__rosidl_typesupport_fastrtps_c.so[0m
+[8.127s] [ 70%] Built target mower_msgs__rosidl_typesupport_fastrtps_cpp
+[8.367s] [ 70%] Built target mower_msgs__rosidl_typesupport_fastrtps_c
+[8.393s] [ 70%] Built target mower_msgs
+[8.418s] [ 74%] [34m[1mGenerating Python code for ROS interfaces[0m
+[8.861s] [ 74%] Built target mower_msgs__py
+[8.889s] [ 77%] [32mBuilding C object CMakeFiles/mower_msgs__rosidl_generator_py.dir/rosidl_generator_py/mower_msgs/msg/_detected_object_s.c.o[0m
+[9.086s] [ 80%] [32m[1mLinking C shared library rosidl_generator_py/mower_msgs/libmower_msgs__rosidl_generator_py.so[0m
+[9.338s] [ 80%] Built target mower_msgs__rosidl_generator_py
+[9.369s] [ 90%] [32mBuilding C object CMakeFiles/mower_msgs__rosidl_typesupport_c__pyext.dir/rosidl_generator_py/mower_msgs/_mower_msgs_s.ep.rosidl_typesupport_c.c.o[0m
+[9.369s] [ 90%] [32mBuilding C object CMakeFiles/mower_msgs__rosidl_typesupport_fastrtps_c__pyext.dir/rosidl_generator_py/mower_msgs/_mower_msgs_s.ep.rosidl_typesupport_fastrtps_c.c.o[0m
+[9.369s] [ 90%] [32mBuilding C object CMakeFiles/mower_msgs__rosidl_typesupport_introspection_c__pyext.dir/rosidl_generator_py/mower_msgs/_mower_msgs_s.ep.rosidl_typesupport_introspection_c.c.o[0m
+[9.528s] [ 96%] [32m[1mLinking C shared library rosidl_generator_py/mower_msgs/mower_msgs_s__rosidl_typesupport_introspection_c.cpython-310-x86_64-linux-gnu.so[0m
+[9.528s] [ 96%] [32m[1mLinking C shared library rosidl_generator_py/mower_msgs/mower_msgs_s__rosidl_typesupport_c.cpython-310-x86_64-linux-gnu.so[0m
+[9.529s] [100%] [32m[1mLinking C shared library rosidl_generator_py/mower_msgs/mower_msgs_s__rosidl_typesupport_fastrtps_c.cpython-310-x86_64-linux-gnu.so[0m
+[9.733s] [100%] Built target mower_msgs__rosidl_typesupport_fastrtps_c__pyext
+[9.733s] [100%] Built target mower_msgs__rosidl_typesupport_introspection_c__pyext
+[9.733s] [100%] Built target mower_msgs__rosidl_typesupport_c__pyext
+[9.752s] Invoked command in '/home/sy/ros2_ws/build/mower_msgs' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/sy/ros2_ws/install/ros_tcp_endpoint:/home/sy/ros2_ws/install/mower_ai:/opt/ros/humble /usr/bin/cmake --build /home/sy/ros2_ws/build/mower_msgs -- -j16 -l16
+[9.768s] Invoking command in '/home/sy/ros2_ws/build/mower_msgs': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/sy/ros2_ws/install/ros_tcp_endpoint:/home/sy/ros2_ws/install/mower_ai:/opt/ros/humble /usr/bin/cmake --install /home/sy/ros2_ws/build/mower_msgs
+[9.776s] -- Install configuration: ""
+[9.777s] -- Execute custom install script
+[9.779s] -- Symlinking: /home/sy/ros2_ws/install/mower_msgs/share/ament_index/resource_index/rosidl_interfaces/mower_msgs
+[9.792s] -- Symlinking: /home/sy/ros2_ws/install/mower_msgs/include/mower_msgs/mower_msgs/msg/detail/detected_object__functions.h
+[9.805s] -- Symlinking: /home/sy/ros2_ws/install/mower_msgs/include/mower_msgs/mower_msgs/msg/detail/detected_object__struct.h
+[9.817s] -- Symlinking: /home/sy/ros2_ws/install/mower_msgs/include/mower_msgs/mower_msgs/msg/detail/detected_object__type_support.h
+[9.830s] -- Symlinking: /home/sy/ros2_ws/install/mower_msgs/include/mower_msgs/mower_msgs/msg/detected_object.h
+[9.844s] -- Symlinking: /home/sy/ros2_ws/install/mower_msgs/include/mower_msgs/mower_msgs/msg/rosidl_generator_c__visibility_control.h
+[9.856s] -- Symlinking: /home/sy/ros2_ws/install/mower_msgs/share/mower_msgs/environment/library_path.sh
+[9.869s] -- Symlinking: /home/sy/ros2_ws/install/mower_msgs/share/mower_msgs/environment/library_path.dsv
+[9.881s] -- Symlinking: /home/sy/ros2_ws/install/mower_msgs/include/mower_msgs/mower_msgs/msg/detail/detected_object__rosidl_typesupport_fastrtps_c.h
+[9.897s] -- Symlinking: /home/sy/ros2_ws/install/mower_msgs/include/mower_msgs/mower_msgs/msg/rosidl_typesupport_fastrtps_c__visibility_control.h
+[9.912s] -- Symlinking: /home/sy/ros2_ws/install/mower_msgs/include/mower_msgs/mower_msgs/msg/detail/detected_object__rosidl_typesupport_introspection_c.h
+[9.927s] -- Symlinking: /home/sy/ros2_ws/install/mower_msgs/include/mower_msgs/mower_msgs/msg/rosidl_typesupport_introspection_c__visibility_control.h
+[9.938s] -- Symlinking: /home/sy/ros2_ws/install/mower_msgs/include/mower_msgs/mower_msgs/msg/detail/detected_object__builder.hpp
+[9.951s] -- Symlinking: /home/sy/ros2_ws/install/mower_msgs/include/mower_msgs/mower_msgs/msg/detail/detected_object__struct.hpp
+[9.962s] -- Symlinking: /home/sy/ros2_ws/install/mower_msgs/include/mower_msgs/mower_msgs/msg/detail/detected_object__traits.hpp
+[9.978s] -- Symlinking: /home/sy/ros2_ws/install/mower_msgs/include/mower_msgs/mower_msgs/msg/detail/detected_object__type_support.hpp
+[9.989s] -- Symlinking: /home/sy/ros2_ws/install/mower_msgs/include/mower_msgs/mower_msgs/msg/detected_object.hpp
+[10.002s] -- Symlinking: /home/sy/ros2_ws/install/mower_msgs/include/mower_msgs/mower_msgs/msg/rosidl_generator_cpp__visibility_control.hpp
+[10.014s] -- Symlinking: /home/sy/ros2_ws/install/mower_msgs/include/mower_msgs/mower_msgs/msg/detail/detected_object__rosidl_typesupport_fastrtps_cpp.hpp
+[10.026s] -- Symlinking: /home/sy/ros2_ws/install/mower_msgs/include/mower_msgs/mower_msgs/msg/rosidl_typesupport_fastrtps_cpp__visibility_control.h
+[10.038s] -- Symlinking: /home/sy/ros2_ws/install/mower_msgs/include/mower_msgs/mower_msgs/msg/detail/detected_object__rosidl_typesupport_introspection_cpp.hpp
+[10.050s] -- Symlinking: /home/sy/ros2_ws/install/mower_msgs/share/mower_msgs/environment/pythonpath.sh
+[10.063s] -- Symlinking: /home/sy/ros2_ws/install/mower_msgs/share/mower_msgs/environment/pythonpath.dsv
+[10.077s] -- Symlinking: /home/sy/ros2_ws/install/mower_msgs/local/lib/python3.10/dist-packages/mower_msgs-0.0.0-py3.10.egg-info/PKG-INFO
+[10.090s] -- Symlinking: /home/sy/ros2_ws/install/mower_msgs/local/lib/python3.10/dist-packages/mower_msgs-0.0.0-py3.10.egg-info/SOURCES.txt
+[10.102s] -- Symlinking: /home/sy/ros2_ws/install/mower_msgs/local/lib/python3.10/dist-packages/mower_msgs-0.0.0-py3.10.egg-info/dependency_links.txt
+[10.115s] -- Symlinking: /home/sy/ros2_ws/install/mower_msgs/local/lib/python3.10/dist-packages/mower_msgs-0.0.0-py3.10.egg-info/top_level.txt
+[10.128s] -- Symlinking: /home/sy/ros2_ws/install/mower_msgs/local/lib/python3.10/dist-packages/mower_msgs/__init__.py
+[10.140s] -- Symlinking: /home/sy/ros2_ws/install/mower_msgs/local/lib/python3.10/dist-packages/mower_msgs/_mower_msgs_s.ep.rosidl_typesupport_c.c
+[10.152s] -- Symlinking: /home/sy/ros2_ws/install/mower_msgs/local/lib/python3.10/dist-packages/mower_msgs/_mower_msgs_s.ep.rosidl_typesupport_fastrtps_c.c
+[10.164s] -- Symlinking: /home/sy/ros2_ws/install/mower_msgs/local/lib/python3.10/dist-packages/mower_msgs/_mower_msgs_s.ep.rosidl_typesupport_introspection_c.c
+[10.176s] -- Symlinking: /home/sy/ros2_ws/install/mower_msgs/local/lib/python3.10/dist-packages/mower_msgs/libmower_msgs__rosidl_generator_py.so
+[10.188s] -- Symlinking: /home/sy/ros2_ws/install/mower_msgs/local/lib/python3.10/dist-packages/mower_msgs/mower_msgs_s__rosidl_typesupport_c.cpython-310-x86_64-linux-gnu.so
+[10.202s] -- Symlinking: /home/sy/ros2_ws/install/mower_msgs/local/lib/python3.10/dist-packages/mower_msgs/mower_msgs_s__rosidl_typesupport_fastrtps_c.cpython-310-x86_64-linux-gnu.so
+[10.216s] -- Symlinking: /home/sy/ros2_ws/install/mower_msgs/local/lib/python3.10/dist-packages/mower_msgs/mower_msgs_s__rosidl_typesupport_introspection_c.cpython-310-x86_64-linux-gnu.so
+[10.232s] -- Symlinking: /home/sy/ros2_ws/install/mower_msgs/local/lib/python3.10/dist-packages/mower_msgs/msg/__init__.py
+[10.244s] -- Symlinking: /home/sy/ros2_ws/install/mower_msgs/local/lib/python3.10/dist-packages/mower_msgs/msg/_detected_object.py
+[10.255s] -- Symlinking: /home/sy/ros2_ws/install/mower_msgs/local/lib/python3.10/dist-packages/mower_msgs/msg/_detected_object_s.c
+[10.268s] -- Up-to-date symlink: /home/sy/ros2_ws/install/mower_msgs/local/lib/python3.10/dist-packages/mower_msgs/mower_msgs_s__rosidl_typesupport_fastrtps_c.cpython-310-x86_64-linux-gnu.so
+[10.269s] -- Up-to-date symlink: /home/sy/ros2_ws/install/mower_msgs/local/lib/python3.10/dist-packages/mower_msgs/mower_msgs_s__rosidl_typesupport_introspection_c.cpython-310-x86_64-linux-gnu.so
+[10.269s] -- Up-to-date symlink: /home/sy/ros2_ws/install/mower_msgs/local/lib/python3.10/dist-packages/mower_msgs/mower_msgs_s__rosidl_typesupport_c.cpython-310-x86_64-linux-gnu.so
+[10.270s] -- Symlinking: /home/sy/ros2_ws/install/mower_msgs/share/mower_msgs/msg/DetectedObject.idl
+[10.282s] -- Symlinking: /home/sy/ros2_ws/install/mower_msgs/share/mower_msgs/msg/DetectedObject.msg
+[10.293s] -- Symlinking: /home/sy/ros2_ws/install/mower_msgs/share/ament_index/resource_index/package_run_dependencies/mower_msgs
+[10.305s] -- Symlinking: /home/sy/ros2_ws/install/mower_msgs/share/ament_index/resource_index/parent_prefix_path/mower_msgs
+[10.317s] -- Symlinking: /home/sy/ros2_ws/install/mower_msgs/share/mower_msgs/environment/ament_prefix_path.sh
+[10.332s] -- Symlinking: /home/sy/ros2_ws/install/mower_msgs/share/mower_msgs/environment/ament_prefix_path.dsv
+[10.347s] -- Symlinking: /home/sy/ros2_ws/install/mower_msgs/share/mower_msgs/environment/path.sh
+[10.363s] -- Symlinking: /home/sy/ros2_ws/install/mower_msgs/share/mower_msgs/environment/path.dsv
+[10.379s] -- Symlinking: /home/sy/ros2_ws/install/mower_msgs/share/mower_msgs/local_setup.bash
+[10.396s] -- Symlinking: /home/sy/ros2_ws/install/mower_msgs/share/mower_msgs/local_setup.sh
+[10.410s] -- Symlinking: /home/sy/ros2_ws/install/mower_msgs/share/mower_msgs/local_setup.zsh
+[10.423s] -- Symlinking: /home/sy/ros2_ws/install/mower_msgs/share/mower_msgs/local_setup.dsv
+[10.437s] -- Symlinking: /home/sy/ros2_ws/install/mower_msgs/share/mower_msgs/package.dsv
+[10.450s] -- Symlinking: /home/sy/ros2_ws/install/mower_msgs/share/ament_index/resource_index/packages/mower_msgs
+[10.465s] -- Symlinking: /home/sy/ros2_ws/install/mower_msgs/share/mower_msgs/cmake/rosidl_cmake-extras.cmake
+[10.483s] -- Symlinking: /home/sy/ros2_ws/install/mower_msgs/share/mower_msgs/cmake/ament_cmake_export_include_directories-extras.cmake
+[10.502s] -- Symlinking: /home/sy/ros2_ws/install/mower_msgs/share/mower_msgs/cmake/ament_cmake_export_libraries-extras.cmake
+[10.520s] -- Symlinking: /home/sy/ros2_ws/install/mower_msgs/share/mower_msgs/cmake/ament_cmake_export_targets-extras.cmake
+[10.535s] -- Symlinking: /home/sy/ros2_ws/install/mower_msgs/share/mower_msgs/cmake/rosidl_cmake_export_typesupport_targets-extras.cmake
+[10.552s] -- Symlinking: /home/sy/ros2_ws/install/mower_msgs/share/mower_msgs/cmake/ament_cmake_export_dependencies-extras.cmake
+[10.580s] -- Symlinking: /home/sy/ros2_ws/install/mower_msgs/share/mower_msgs/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake
+[10.595s] -- Symlinking: /home/sy/ros2_ws/install/mower_msgs/share/mower_msgs/cmake/mower_msgsConfig.cmake
+[10.609s] -- Symlinking: /home/sy/ros2_ws/install/mower_msgs/share/mower_msgs/cmake/mower_msgsConfig-version.cmake
+[10.625s] -- Symlinking: /home/sy/ros2_ws/install/mower_msgs/share/mower_msgs/package.xml
+[10.639s] -- Installing: /home/sy/ros2_ws/install/mower_msgs/lib/libmower_msgs__rosidl_generator_c.so
+[10.639s] -- Set runtime path of "/home/sy/ros2_ws/install/mower_msgs/lib/libmower_msgs__rosidl_generator_c.so" to ""
+[10.639s] -- Installing: /home/sy/ros2_ws/install/mower_msgs/lib/libmower_msgs__rosidl_typesupport_fastrtps_c.so
+[10.640s] -- Set runtime path of "/home/sy/ros2_ws/install/mower_msgs/lib/libmower_msgs__rosidl_typesupport_fastrtps_c.so" to ""
+[10.640s] -- Installing: /home/sy/ros2_ws/install/mower_msgs/lib/libmower_msgs__rosidl_typesupport_introspection_c.so
+[10.641s] -- Set runtime path of "/home/sy/ros2_ws/install/mower_msgs/lib/libmower_msgs__rosidl_typesupport_introspection_c.so" to ""
+[10.641s] -- Installing: /home/sy/ros2_ws/install/mower_msgs/lib/libmower_msgs__rosidl_typesupport_c.so
+[10.642s] -- Set runtime path of "/home/sy/ros2_ws/install/mower_msgs/lib/libmower_msgs__rosidl_typesupport_c.so" to ""
+[10.642s] -- Installing: /home/sy/ros2_ws/install/mower_msgs/lib/libmower_msgs__rosidl_typesupport_fastrtps_cpp.so
+[10.642s] -- Set runtime path of "/home/sy/ros2_ws/install/mower_msgs/lib/libmower_msgs__rosidl_typesupport_fastrtps_cpp.so" to ""
+[10.642s] -- Installing: /home/sy/ros2_ws/install/mower_msgs/lib/libmower_msgs__rosidl_typesupport_introspection_cpp.so
+[10.643s] -- Set runtime path of "/home/sy/ros2_ws/install/mower_msgs/lib/libmower_msgs__rosidl_typesupport_introspection_cpp.so" to ""
+[10.643s] -- Installing: /home/sy/ros2_ws/install/mower_msgs/lib/libmower_msgs__rosidl_typesupport_cpp.so
+[10.644s] -- Set runtime path of "/home/sy/ros2_ws/install/mower_msgs/lib/libmower_msgs__rosidl_typesupport_cpp.so" to ""
+[10.714s] Listing '/home/sy/ros2_ws/install/mower_msgs/local/lib/python3.10/dist-packages/mower_msgs'...
+[10.714s] Compiling '/home/sy/ros2_ws/install/mower_msgs/local/lib/python3.10/dist-packages/mower_msgs/__init__.py'...
+[10.714s] Listing '/home/sy/ros2_ws/install/mower_msgs/local/lib/python3.10/dist-packages/mower_msgs/msg'...
+[10.714s] Compiling '/home/sy/ros2_ws/install/mower_msgs/local/lib/python3.10/dist-packages/mower_msgs/msg/__init__.py'...
+[10.714s] Compiling '/home/sy/ros2_ws/install/mower_msgs/local/lib/python3.10/dist-packages/mower_msgs/msg/_detected_object.py'...
+[10.724s] -- Installing: /home/sy/ros2_ws/install/mower_msgs/lib/libmower_msgs__rosidl_generator_py.so
+[10.725s] -- Set runtime path of "/home/sy/ros2_ws/install/mower_msgs/lib/libmower_msgs__rosidl_generator_py.so" to ""
+[10.725s] -- Installing: /home/sy/ros2_ws/install/mower_msgs/share/mower_msgs/cmake/export_mower_msgs__rosidl_generator_cExport.cmake
+[10.725s] -- Installing: /home/sy/ros2_ws/install/mower_msgs/share/mower_msgs/cmake/export_mower_msgs__rosidl_generator_cExport-noconfig.cmake
+[10.725s] -- Installing: /home/sy/ros2_ws/install/mower_msgs/share/mower_msgs/cmake/export_mower_msgs__rosidl_typesupport_fastrtps_cExport.cmake
+[10.726s] -- Installing: /home/sy/ros2_ws/install/mower_msgs/share/mower_msgs/cmake/export_mower_msgs__rosidl_typesupport_fastrtps_cExport-noconfig.cmake
+[10.726s] -- Installing: /home/sy/ros2_ws/install/mower_msgs/share/mower_msgs/cmake/mower_msgs__rosidl_typesupport_introspection_cExport.cmake
+[10.726s] -- Installing: /home/sy/ros2_ws/install/mower_msgs/share/mower_msgs/cmake/mower_msgs__rosidl_typesupport_introspection_cExport-noconfig.cmake
+[10.726s] -- Installing: /home/sy/ros2_ws/install/mower_msgs/share/mower_msgs/cmake/mower_msgs__rosidl_typesupport_cExport.cmake
+[10.727s] -- Installing: /home/sy/ros2_ws/install/mower_msgs/share/mower_msgs/cmake/mower_msgs__rosidl_typesupport_cExport-noconfig.cmake
+[10.727s] -- Installing: /home/sy/ros2_ws/install/mower_msgs/share/mower_msgs/cmake/export_mower_msgs__rosidl_generator_cppExport.cmake
+[10.727s] -- Installing: /home/sy/ros2_ws/install/mower_msgs/share/mower_msgs/cmake/export_mower_msgs__rosidl_typesupport_fastrtps_cppExport.cmake
+[10.728s] -- Installing: /home/sy/ros2_ws/install/mower_msgs/share/mower_msgs/cmake/export_mower_msgs__rosidl_typesupport_fastrtps_cppExport-noconfig.cmake
+[10.728s] -- Installing: /home/sy/ros2_ws/install/mower_msgs/share/mower_msgs/cmake/mower_msgs__rosidl_typesupport_introspection_cppExport.cmake
+[10.728s] -- Installing: /home/sy/ros2_ws/install/mower_msgs/share/mower_msgs/cmake/mower_msgs__rosidl_typesupport_introspection_cppExport-noconfig.cmake
+[10.729s] -- Installing: /home/sy/ros2_ws/install/mower_msgs/share/mower_msgs/cmake/mower_msgs__rosidl_typesupport_cppExport.cmake
+[10.729s] -- Installing: /home/sy/ros2_ws/install/mower_msgs/share/mower_msgs/cmake/mower_msgs__rosidl_typesupport_cppExport-noconfig.cmake
+[10.729s] -- Installing: /home/sy/ros2_ws/install/mower_msgs/share/mower_msgs/cmake/export_mower_msgs__rosidl_generator_pyExport.cmake
+[10.730s] -- Installing: /home/sy/ros2_ws/install/mower_msgs/share/mower_msgs/cmake/export_mower_msgs__rosidl_generator_pyExport-noconfig.cmake
+[10.734s] Invoked command in '/home/sy/ros2_ws/build/mower_msgs' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/sy/ros2_ws/install/ros_tcp_endpoint:/home/sy/ros2_ws/install/mower_ai:/opt/ros/humble /usr/bin/cmake --install /home/sy/ros2_ws/build/mower_msgs

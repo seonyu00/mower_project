@@ -1,0 +1,1 @@
+/home/sy/ros2_ws/build/mower_msgs/rosidl_typesupport_introspection_c/mower_msgs/msg/detail/detected_object__rosidl_typesupport_introspection_c.h

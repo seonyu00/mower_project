@@ -1,0 +1,30 @@
+slam_toolbox:
+  ros__parameters:
+    # 1. 기본 설정
+    use_sim_time: True
+    solver_plugin: solver_plugins::CeresSolver
+    num_threads: 8
+    
+    # 2. 프레임 및 토픽
+    odom_frame: odom
+    map_frame: map
+    base_frame: base_link
+    scan_topic: /scan
+    mode: mapping # 매핑 모드 강제 지정
+
+    # 3. 레이더 센서 설정 
+    max_laser_range: 10.0 # Unity 센서에 맞춤
+    minimum_time_interval: 0.1
+    transform_timeout: 0.2
+    tf_buffer_duration: 30.0
+    
+    # 4. 지도 품질 설정
+    resolution: 0.05
+    map_update_interval: 0.5 # 0.5초마다 지도 갱신 (더 빠르게)
+    fine_search_angle_thresh: 0.00
+    
+    # 5. 기타 알고리즘 튜닝 (초기화 잘 되게)
+    minimum_travel_distance: 0.0
+    minimum_travel_heading: 0.0
+    use_scan_matching: true
+    use_scan_barycenter: true

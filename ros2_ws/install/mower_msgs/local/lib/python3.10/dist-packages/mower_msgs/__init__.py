@@ -1,0 +1,1 @@
+/home/sy/ros2_ws/build/mower_msgs/rosidl_generator_py/mower_msgs/__init__.py

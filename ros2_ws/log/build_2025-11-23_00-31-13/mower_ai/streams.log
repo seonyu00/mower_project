@@ -1,0 +1,17 @@
+[2.435s] Invoking command in '/home/sy/ros2_ws/build/mower_ai': PYTHONPATH=/home/sy/ros2_ws/build/mower_ai/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/sy/ros2_ws/install/mower_ai/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/sy/ros2_ws/build/mower_ai/build --no-deps symlink_data
+[2.883s] running develop
+[3.183s] running egg_info
+[3.184s] writing mower_ai.egg-info/PKG-INFO
+[3.184s] writing dependency_links to mower_ai.egg-info/dependency_links.txt
+[3.185s] writing entry points to mower_ai.egg-info/entry_points.txt
+[3.186s] writing requirements to mower_ai.egg-info/requires.txt
+[3.186s] writing top-level names to mower_ai.egg-info/top_level.txt
+[3.190s] reading manifest file 'mower_ai.egg-info/SOURCES.txt'
+[3.192s] writing manifest file 'mower_ai.egg-info/SOURCES.txt'
+[3.196s] running build_ext
+[3.197s] Creating /home/sy/ros2_ws/install/mower_ai/lib/python3.10/site-packages/mower-ai.egg-link (link to .)
+[3.199s] Installing ai_controller script to /home/sy/ros2_ws/install/mower_ai/lib/mower_ai
+[3.199s] 
+[3.200s] Installed /home/sy/ros2_ws/build/mower_ai
+[3.200s] running symlink_data
+[3.288s] Invoked command in '/home/sy/ros2_ws/build/mower_ai' returned '0': PYTHONPATH=/home/sy/ros2_ws/build/mower_ai/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/sy/ros2_ws/install/mower_ai/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/sy/ros2_ws/build/mower_ai/build --no-deps symlink_data

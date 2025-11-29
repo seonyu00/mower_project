@@ -1,0 +1,19 @@
+[0.599s] Invoking command in '/home/sy/ros2_ws/build/ros_tcp_endpoint': PYTHONPATH=/home/sy/ros2_ws/build/ros_tcp_endpoint/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/sy/ros2_ws/install/ros_tcp_endpoint/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/sy/ros2_ws/build/ros_tcp_endpoint/build --no-deps symlink_data
+[0.732s] /usr/lib/python3/dist-packages/setuptools/dist.py:723: UserWarning: Usage of dash-separated 'script-dir' will not be supported in future versions. Please use the underscore name 'script_dir' instead
+[0.732s]   warnings.warn(
+[0.751s] running develop
+[0.838s] running egg_info
+[0.838s] writing ros_tcp_endpoint.egg-info/PKG-INFO
+[0.838s] writing dependency_links to ros_tcp_endpoint.egg-info/dependency_links.txt
+[0.838s] writing entry points to ros_tcp_endpoint.egg-info/entry_points.txt
+[0.838s] writing requirements to ros_tcp_endpoint.egg-info/requires.txt
+[0.839s] writing top-level names to ros_tcp_endpoint.egg-info/top_level.txt
+[0.840s] reading manifest file 'ros_tcp_endpoint.egg-info/SOURCES.txt'
+[0.840s] writing manifest file 'ros_tcp_endpoint.egg-info/SOURCES.txt'
+[0.841s] running build_ext
+[0.841s] Creating /home/sy/ros2_ws/install/ros_tcp_endpoint/lib/python3.10/site-packages/ros-tcp-endpoint.egg-link (link to .)
+[0.842s] Installing default_server_endpoint script to /home/sy/ros2_ws/install/ros_tcp_endpoint/lib/ros_tcp_endpoint
+[0.842s] 
+[0.842s] Installed /home/sy/ros2_ws/build/ros_tcp_endpoint
+[0.842s] running symlink_data
+[0.868s] Invoked command in '/home/sy/ros2_ws/build/ros_tcp_endpoint' returned '0': PYTHONPATH=/home/sy/ros2_ws/build/ros_tcp_endpoint/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/sy/ros2_ws/install/ros_tcp_endpoint/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/sy/ros2_ws/build/ros_tcp_endpoint/build --no-deps symlink_data

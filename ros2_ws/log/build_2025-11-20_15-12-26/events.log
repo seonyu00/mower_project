@@ -1,0 +1,398 @@
+[0.000000] (-) TimerEvent: {}
+[0.004100] (mower_msgs) JobQueued: {'identifier': 'mower_msgs', 'dependencies': OrderedDict()}
+[0.004781] (ros_tcp_endpoint) JobQueued: {'identifier': 'ros_tcp_endpoint', 'dependencies': OrderedDict()}
+[0.004871] (mower_ai) JobQueued: {'identifier': 'mower_ai', 'dependencies': OrderedDict([('mower_msgs', '/home/sy/ros2_ws/install/mower_msgs')])}
+[0.006334] (mower_msgs) JobStarted: {'identifier': 'mower_msgs'}
+[0.028619] (ros_tcp_endpoint) JobStarted: {'identifier': 'ros_tcp_endpoint'}
+[0.043816] (mower_msgs) JobProgress: {'identifier': 'mower_msgs', 'progress': 'cmake'}
+[0.046547] (mower_msgs) Command: {'cmd': ['/usr/bin/cmake', '/home/sy/ros2_ws/src/mower_msgs', '-DAMENT_CMAKE_SYMLINK_INSTALL=1', '-DCMAKE_INSTALL_PREFIX=/home/sy/ros2_ws/install/mower_msgs'], 'cwd': '/home/sy/ros2_ws/build/mower_msgs', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'sy'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/sy/ros2_ws/install/mower_msgs/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('WT_PROFILE_ID', '{4ff56d04-d9cf-57ea-bae2-ad396374e7e3}'), ('MOTD_SHOWN', 'update-motd'), ('HOME', '/home/sy'), ('OLDPWD', '/home/sy/ros2_ws'), ('ROS_PYTHON_VERSION', '3'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('WSL_DISTRO_NAME', 'Ubuntu-22.04'), ('WAYLAND_DISPLAY', 'wayland-0'), ('COLCON_PREFIX_PATH', '/home/sy/ros2_ws/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'sy'), ('NAME', 'S'), ('WSL_INTEROP', '/run/WSL/313_interop'), ('PULSE_SERVER', 'unix:/mnt/wslg/PulseServer'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('TERM', 'xterm-256color'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/home/sy/.local/bin:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Users/tjsdb/AppData/Local/Programs/Python/Python313/Scripts/:/mnt/c/Users/tjsdb/AppData/Local/Programs/Python/Python313/:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common:/mnt/c/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/:/mnt/c/Program Files/Bandizip/:/mnt/c/Program Files/NVIDIA Corporation/NVIDIA app/NvDLISR:/mnt/c/Program Files/dotnet/:/mnt/c/Program Files/Git/cmd:/mnt/c/mingw64/bin:/mnt/c/ProgramData/chocolatey/bin:/mnt/c/Program Files/Docker/Docker/resources/bin:/mnt/c/Program Files/nodejs/:/mnt/c/msys64/mingw64/bin:/mnt/c/msys64/usr/bin:/mnt/c/Program Files/PuTTY/:/mnt/c/Users/tjsdb/AppData/Local/Programs/Python/Launcher/:/mnt/c/Users/tjsdb/AppData/Local/Microsoft/WindowsApps:/mnt/c/Program Files/JetBrains/IntelliJ IDEA 2024.3.2/bin:/mnt/c/Program Files/MariaDB 10.6/bin:/mnt/c/Users/tjsdb/AppData/Local/spicetify:/mnt/c/Users/tjsdb/AppData/Local/Programs/Microsoft VS Code/bin:/mnt/c/Users/tjsdb/AppData/Local/Microsoft/WinGet/Packages/Schniz.fnm_Microsoft.Winget.Source_8wekyb3d8bbwe:/mnt/c/Users/tjsdb/AppData/Roaming/npm:/mnt/c/Users/tjsdb/.dotnet/tools:/snap/bin'), ('WT_SESSION', '356a57c3-3e52-4640-a77d-d220e69ebb4d'), ('XDG_RUNTIME_DIR', '/run/user/1000/'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('AMENT_PREFIX_PATH', '/home/sy/ros2_ws/install/ros_tcp_endpoint:/home/sy/ros2_ws/install/mower_ai:/home/sy/ros2_ws/install/mower_msgs:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('PWD', '/home/sy/ros2_ws/build/mower_msgs'), ('XDG_DATA_DIRS', '/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/sy/ros2_ws/install/ros_tcp_endpoint/lib/python3.10/site-packages:/home/sy/ros2_ws/install/mower_ai/lib/python3.10/site-packages:/home/sy/ros2_ws/install/mower_msgs/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('WSL2_GUI_APPS_ENABLED', '1'), ('HOSTTYPE', 'x86_64'), ('CMAKE_PREFIX_PATH', '/home/sy/ros2_ws/install/mower_msgs:/home/sy/ros2_ws/install/ros_tcp_endpoint:/home/sy/ros2_ws/install/mower_ai:/opt/ros/humble'), ('WSLENV', 'WT_SESSION:WT_PROFILE_ID:')]), 'shell': False}
+[0.100064] (-) TimerEvent: {}
+[0.200582] (-) TimerEvent: {}
+[0.301137] (-) TimerEvent: {}
+[0.401827] (-) TimerEvent: {}
+[0.502710] (-) TimerEvent: {}
+[0.543227] (mower_msgs) StdoutLine: {'line': b'-- The C compiler identification is GNU 11.4.0\n'}
+[0.607798] (-) TimerEvent: {}
+[0.708968] (-) TimerEvent: {}
+[0.815573] (-) TimerEvent: {}
+[0.924412] (-) TimerEvent: {}
+[1.026822] (-) TimerEvent: {}
+[1.131240] (-) TimerEvent: {}
+[1.234227] (-) TimerEvent: {}
+[1.248973] (ros_tcp_endpoint) Command: {'cmd': ['/usr/bin/python3', '-W', 'ignore:setup.py install is deprecated', '-W', 'ignore:easy_install command is deprecated', 'setup.py', 'develop', '--editable', '--build-directory', '/home/sy/ros2_ws/build/ros_tcp_endpoint/build', '--no-deps', 'symlink_data'], 'cwd': '/home/sy/ros2_ws/build/ros_tcp_endpoint', 'env': {'LESSOPEN': '| /usr/bin/lesspipe %s', 'USER': 'sy', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/home/sy/ros2_ws/install/mower_msgs/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib', 'WT_PROFILE_ID': '{4ff56d04-d9cf-57ea-bae2-ad396374e7e3}', 'MOTD_SHOWN': 'update-motd', 'HOME': '/home/sy', 'OLDPWD': '/home/sy/ros2_ws', 'ROS_PYTHON_VERSION': '3', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'WSL_DISTRO_NAME': 'Ubuntu-22.04', 'WAYLAND_DISPLAY': 'wayland-0', 'COLCON_PREFIX_PATH': '/home/sy/ros2_ws/install', 'ROS_DISTRO': 'humble', 'LOGNAME': 'sy', 'NAME': 'S', 'WSL_INTEROP': '/run/WSL/313_interop', 'PULSE_SERVER': 'unix:/mnt/wslg/PulseServer', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'TERM': 'xterm-256color', 'ROS_LOCALHOST_ONLY': '0', 'PATH': '/home/sy/.local/bin:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Users/tjsdb/AppData/Local/Programs/Python/Python313/Scripts/:/mnt/c/Users/tjsdb/AppData/Local/Programs/Python/Python313/:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common:/mnt/c/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/:/mnt/c/Program Files/Bandizip/:/mnt/c/Program Files/NVIDIA Corporation/NVIDIA app/NvDLISR:/mnt/c/Program Files/dotnet/:/mnt/c/Program Files/Git/cmd:/mnt/c/mingw64/bin:/mnt/c/ProgramData/chocolatey/bin:/mnt/c/Program Files/Docker/Docker/resources/bin:/mnt/c/Program Files/nodejs/:/mnt/c/msys64/mingw64/bin:/mnt/c/msys64/usr/bin:/mnt/c/Program Files/PuTTY/:/mnt/c/Users/tjsdb/AppData/Local/Programs/Python/Launcher/:/mnt/c/Users/tjsdb/AppData/Local/Microsoft/WindowsApps:/mnt/c/Program Files/JetBrains/IntelliJ IDEA 2024.3.2/bin:/mnt/c/Program Files/MariaDB 10.6/bin:/mnt/c/Users/tjsdb/AppData/Local/spicetify:/mnt/c/Users/tjsdb/AppData/Local/Programs/Microsoft VS Code/bin:/mnt/c/Users/tjsdb/AppData/Local/Microsoft/WinGet/Packages/Schniz.fnm_Microsoft.Winget.Source_8wekyb3d8bbwe:/mnt/c/Users/tjsdb/AppData/Roaming/npm:/mnt/c/Users/tjsdb/.dotnet/tools:/snap/bin', 'WT_SESSION': '356a57c3-3e52-4640-a77d-d220e69ebb4d', 'XDG_RUNTIME_DIR': '/run/user/1000/', 'DISPLAY': ':0', 'LANG': 'en_US.UTF-8', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'AMENT_PREFIX_PATH': '/home/sy/ros2_ws/install/ros_tcp_endpoint:/home/sy/ros2_ws/install/mower_ai:/home/sy/ros2_ws/install/mower_msgs:/opt/ros/humble', 'SHELL': '/bin/bash', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'PWD': '/home/sy/ros2_ws/build/ros_tcp_endpoint', 'XDG_DATA_DIRS': '/usr/local/share:/usr/share:/var/lib/snapd/desktop', 'PYTHONPATH': '/home/sy/ros2_ws/build/ros_tcp_endpoint/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/sy/ros2_ws/install/ros_tcp_endpoint/lib/python3.10/site-packages:/home/sy/ros2_ws/install/ros_tcp_endpoint/lib/python3.10/site-packages:/home/sy/ros2_ws/install/mower_ai/lib/python3.10/site-packages:/home/sy/ros2_ws/install/mower_msgs/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages', 'COLCON': '1', 'WSL2_GUI_APPS_ENABLED': '1', 'HOSTTYPE': 'x86_64', 'CMAKE_PREFIX_PATH': '/home/sy/ros2_ws/install/mower_msgs', 'WSLENV': 'WT_SESSION:WT_PROFILE_ID:'}, 'shell': False}
+[1.334776] (-) TimerEvent: {}
+[1.435513] (-) TimerEvent: {}
+[1.536496] (-) TimerEvent: {}
+[1.595380] (ros_tcp_endpoint) StderrLine: {'line': b"/usr/lib/python3/dist-packages/setuptools/dist.py:723: UserWarning: Usage of dash-separated 'script-dir' will not be supported in future versions. Please use the underscore name 'script_dir' instead\n"}
+[1.595714] (ros_tcp_endpoint) StderrLine: {'line': b'  warnings.warn(\n'}
+[1.637415] (ros_tcp_endpoint) StdoutLine: {'line': b'running develop\n'}
+[1.637712] (-) TimerEvent: {}
+[1.739590] (-) TimerEvent: {}
+[1.817581] (ros_tcp_endpoint) StdoutLine: {'line': b'running egg_info\n'}
+[1.818032] (ros_tcp_endpoint) StdoutLine: {'line': b'creating ros_tcp_endpoint.egg-info\n'}
+[1.818487] (ros_tcp_endpoint) StdoutLine: {'line': b'writing ros_tcp_endpoint.egg-info/PKG-INFO\n'}
+[1.818767] (ros_tcp_endpoint) StdoutLine: {'line': b'writing dependency_links to ros_tcp_endpoint.egg-info/dependency_links.txt\n'}
+[1.819064] (ros_tcp_endpoint) StdoutLine: {'line': b'writing entry points to ros_tcp_endpoint.egg-info/entry_points.txt\n'}
+[1.819382] (ros_tcp_endpoint) StdoutLine: {'line': b'writing requirements to ros_tcp_endpoint.egg-info/requires.txt\n'}
+[1.819532] (ros_tcp_endpoint) StdoutLine: {'line': b'writing top-level names to ros_tcp_endpoint.egg-info/top_level.txt\n'}
+[1.819797] (ros_tcp_endpoint) StdoutLine: {'line': b"writing manifest file 'ros_tcp_endpoint.egg-info/SOURCES.txt'\n"}
+[1.822912] (ros_tcp_endpoint) StdoutLine: {'line': b"reading manifest file 'ros_tcp_endpoint.egg-info/SOURCES.txt'\n"}
+[1.823779] (ros_tcp_endpoint) StdoutLine: {'line': b"writing manifest file 'ros_tcp_endpoint.egg-info/SOURCES.txt'\n"}
+[1.825516] (ros_tcp_endpoint) StdoutLine: {'line': b'running build_ext\n'}
+[1.825793] (ros_tcp_endpoint) StdoutLine: {'line': b'Creating /home/sy/ros2_ws/install/ros_tcp_endpoint/lib/python3.10/site-packages/ros-tcp-endpoint.egg-link (link to .)\n'}
+[1.826728] (ros_tcp_endpoint) StdoutLine: {'line': b'Installing default_server_endpoint script to /home/sy/ros2_ws/install/ros_tcp_endpoint/lib/ros_tcp_endpoint\n'}
+[1.827632] (ros_tcp_endpoint) StdoutLine: {'line': b'\n'}
+[1.827772] (ros_tcp_endpoint) StdoutLine: {'line': b'Installed /home/sy/ros2_ws/build/ros_tcp_endpoint\n'}
+[1.827894] (ros_tcp_endpoint) StdoutLine: {'line': b'running symlink_data\n'}
+[1.828138] (ros_tcp_endpoint) StdoutLine: {'line': b'creating /home/sy/ros2_ws/install/ros_tcp_endpoint/share/ament_index\n'}
+[1.828228] (ros_tcp_endpoint) StdoutLine: {'line': b'creating /home/sy/ros2_ws/install/ros_tcp_endpoint/share/ament_index/resource_index\n'}
+[1.828367] (ros_tcp_endpoint) StdoutLine: {'line': b'creating /home/sy/ros2_ws/install/ros_tcp_endpoint/share/ament_index/resource_index/packages\n'}
+[1.828674] (ros_tcp_endpoint) StdoutLine: {'line': b'symbolically linking /home/sy/ros2_ws/build/ros_tcp_endpoint/resource/ros_tcp_endpoint -> /home/sy/ros2_ws/install/ros_tcp_endpoint/share/ament_index/resource_index/packages\n'}
+[1.829017] (ros_tcp_endpoint) StdoutLine: {'line': b'symbolically linking /home/sy/ros2_ws/build/ros_tcp_endpoint/package.xml -> /home/sy/ros2_ws/install/ros_tcp_endpoint/share/ros_tcp_endpoint\n'}
+[1.829343] (ros_tcp_endpoint) StdoutLine: {'line': b'creating /home/sy/ros2_ws/install/ros_tcp_endpoint/share/ros_tcp_endpoint/launch\n'}
+[1.829810] (ros_tcp_endpoint) StdoutLine: {'line': b'symbolically linking /home/sy/ros2_ws/build/ros_tcp_endpoint/launch/endpoint.py -> /home/sy/ros2_ws/install/ros_tcp_endpoint/share/ros_tcp_endpoint/launch\n'}
+[1.840700] (-) TimerEvent: {}
+[1.875127] (ros_tcp_endpoint) CommandEnded: {'returncode': 0}
+[1.900975] (ros_tcp_endpoint) JobEnded: {'identifier': 'ros_tcp_endpoint', 'rc': 0}
+[1.940976] (-) TimerEvent: {}
+[1.945130] (mower_msgs) StdoutLine: {'line': b'-- The CXX compiler identification is GNU 11.4.0\n'}
+[2.041261] (-) TimerEvent: {}
+[2.144516] (-) TimerEvent: {}
+[2.249599] (-) TimerEvent: {}
+[2.353454] (-) TimerEvent: {}
+[2.454299] (-) TimerEvent: {}
+[2.556861] (-) TimerEvent: {}
+[2.665792] (-) TimerEvent: {}
+[2.673327] (mower_msgs) StdoutLine: {'line': b'-- Detecting C compiler ABI info\n'}
+[2.766430] (-) TimerEvent: {}
+[2.869127] (-) TimerEvent: {}
+[2.932851] (mower_msgs) StdoutLine: {'line': b'-- Detecting C compiler ABI info - done\n'}
+[2.942103] (mower_msgs) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc - skipped\n'}
+[2.954462] (mower_msgs) StdoutLine: {'line': b'-- Detecting C compile features\n'}
+[2.955751] (mower_msgs) StdoutLine: {'line': b'-- Detecting C compile features - done\n'}
+[2.962848] (mower_msgs) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info\n'}
+[2.969811] (-) TimerEvent: {}
+[3.078689] (-) TimerEvent: {}
+[3.180023] (-) TimerEvent: {}
+[3.214405] (mower_msgs) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info - done\n'}
+[3.225261] (mower_msgs) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++ - skipped\n'}
+[3.225702] (mower_msgs) StdoutLine: {'line': b'-- Detecting CXX compile features\n'}
+[3.226328] (mower_msgs) StdoutLine: {'line': b'-- Detecting CXX compile features - done\n'}
+[3.253199] (mower_msgs) StdoutLine: {'line': b'-- Found ament_cmake: 1.3.12 (/opt/ros/humble/share/ament_cmake/cmake)\n'}
+[3.282420] (-) TimerEvent: {}
+[3.383637] (-) TimerEvent: {}
+[3.470001] (mower_msgs) StdoutLine: {'line': b'-- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter \n'}
+[3.483820] (-) TimerEvent: {}
+[3.579095] (mower_msgs) StdoutLine: {'line': b'-- Override CMake install command with custom implementation using symlinks instead of copying resources\n'}
+[3.583982] (-) TimerEvent: {}
+[3.641489] (mower_msgs) StdoutLine: {'line': b'-- Found rosidl_default_generators: 1.2.0 (/opt/ros/humble/share/rosidl_default_generators/cmake)\n'}
+[3.648463] (mower_msgs) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[3.664054] (mower_msgs) StdoutLine: {'line': b'-- Found rosidl_adapter: 3.1.7 (/opt/ros/humble/share/rosidl_adapter/cmake)\n'}
+[3.684201] (-) TimerEvent: {}
+[3.784716] (-) TimerEvent: {}
+[3.885259] (-) TimerEvent: {}
+[3.985783] (-) TimerEvent: {}
+[4.047758] (mower_msgs) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[4.085920] (-) TimerEvent: {}
+[4.186353] (-) TimerEvent: {}
+[4.286796] (-) TimerEvent: {}
+[4.387372] (-) TimerEvent: {}
+[4.455532] (mower_msgs) StdoutLine: {'line': b'-- Found ament_cmake_ros: 0.10.0 (/opt/ros/humble/share/ament_cmake_ros/cmake)\n'}
+[4.487534] (-) TimerEvent: {}
+[4.588084] (-) TimerEvent: {}
+[4.688610] (-) TimerEvent: {}
+[4.723111] (mower_msgs) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[4.788836] (-) TimerEvent: {}
+[4.889437] (-) TimerEvent: {}
+[4.989970] (-) TimerEvent: {}
+[5.018798] (mower_msgs) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[5.090119] (-) TimerEvent: {}
+[5.190592] (-) TimerEvent: {}
+[5.273261] (mower_msgs) StdoutLine: {'line': b'-- Found PythonInterp: /usr/bin/python3 (found suitable version "3.10.12", minimum required is "3.6") \n'}
+[5.278094] (mower_msgs) StdoutLine: {'line': b'-- Found python_cmake_module: 0.10.0 (/opt/ros/humble/share/python_cmake_module/cmake)\n'}
+[5.291716] (-) TimerEvent: {}
+[5.393787] (-) TimerEvent: {}
+[5.496206] (-) TimerEvent: {}
+[5.598750] (-) TimerEvent: {}
+[5.701603] (-) TimerEvent: {}
+[5.803970] (-) TimerEvent: {}
+[5.906440] (-) TimerEvent: {}
+[6.008250] (-) TimerEvent: {}
+[6.092115] (mower_msgs) StdoutLine: {'line': b'-- Found PythonLibs: /usr/lib/x86_64-linux-gnu/libpython3.10.so (found suitable version "3.10.12", minimum required is "3.5") \n'}
+[6.092427] (mower_msgs) StdoutLine: {'line': b'-- Using PYTHON_EXECUTABLE: /usr/bin/python3\n'}
+[6.092511] (mower_msgs) StdoutLine: {'line': b'-- Using PYTHON_INCLUDE_DIRS: /usr/include/python3.10\n'}
+[6.092621] (mower_msgs) StdoutLine: {'line': b'-- Using PYTHON_LIBRARIES: /usr/lib/x86_64-linux-gnu/libpython3.10.so\n'}
+[6.109749] (-) TimerEvent: {}
+[6.120727] (mower_msgs) StdoutLine: {'line': b'-- Found PythonExtra: .so  \n'}
+[6.211575] (-) TimerEvent: {}
+[6.251701] (mower_msgs) StdoutLine: {'line': b'-- Found ament_lint_auto: 0.12.14 (/opt/ros/humble/share/ament_lint_auto/cmake)\n'}
+[6.299656] (mower_msgs) StdoutLine: {'line': b"-- Added test 'lint_cmake' to check CMake code style\n"}
+[6.303240] (mower_msgs) StdoutLine: {'line': b"-- Added test 'xmllint' to check XML markup files\n"}
+[6.310105] (mower_msgs) StdoutLine: {'line': b'-- Configuring done\n'}
+[6.311787] (-) TimerEvent: {}
+[6.389955] (mower_msgs) StdoutLine: {'line': b'-- Generating done\n'}
+[6.409280] (mower_msgs) StdoutLine: {'line': b'-- Build files have been written to: /home/sy/ros2_ws/build/mower_msgs\n'}
+[6.412124] (-) TimerEvent: {}
+[6.422924] (mower_msgs) CommandEnded: {'returncode': 0}
+[6.423932] (mower_msgs) JobProgress: {'identifier': 'mower_msgs', 'progress': 'build'}
+[6.425924] (mower_msgs) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/sy/ros2_ws/build/mower_msgs', '--', '-j16', '-l16'], 'cwd': '/home/sy/ros2_ws/build/mower_msgs', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'sy'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/sy/ros2_ws/install/mower_msgs/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('WT_PROFILE_ID', '{4ff56d04-d9cf-57ea-bae2-ad396374e7e3}'), ('MOTD_SHOWN', 'update-motd'), ('HOME', '/home/sy'), ('OLDPWD', '/home/sy/ros2_ws'), ('ROS_PYTHON_VERSION', '3'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('WSL_DISTRO_NAME', 'Ubuntu-22.04'), ('WAYLAND_DISPLAY', 'wayland-0'), ('COLCON_PREFIX_PATH', '/home/sy/ros2_ws/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'sy'), ('NAME', 'S'), ('WSL_INTEROP', '/run/WSL/313_interop'), ('PULSE_SERVER', 'unix:/mnt/wslg/PulseServer'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('TERM', 'xterm-256color'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/home/sy/.local/bin:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Users/tjsdb/AppData/Local/Programs/Python/Python313/Scripts/:/mnt/c/Users/tjsdb/AppData/Local/Programs/Python/Python313/:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common:/mnt/c/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/:/mnt/c/Program Files/Bandizip/:/mnt/c/Program Files/NVIDIA Corporation/NVIDIA app/NvDLISR:/mnt/c/Program Files/dotnet/:/mnt/c/Program Files/Git/cmd:/mnt/c/mingw64/bin:/mnt/c/ProgramData/chocolatey/bin:/mnt/c/Program Files/Docker/Docker/resources/bin:/mnt/c/Program Files/nodejs/:/mnt/c/msys64/mingw64/bin:/mnt/c/msys64/usr/bin:/mnt/c/Program Files/PuTTY/:/mnt/c/Users/tjsdb/AppData/Local/Programs/Python/Launcher/:/mnt/c/Users/tjsdb/AppData/Local/Microsoft/WindowsApps:/mnt/c/Program Files/JetBrains/IntelliJ IDEA 2024.3.2/bin:/mnt/c/Program Files/MariaDB 10.6/bin:/mnt/c/Users/tjsdb/AppData/Local/spicetify:/mnt/c/Users/tjsdb/AppData/Local/Programs/Microsoft VS Code/bin:/mnt/c/Users/tjsdb/AppData/Local/Microsoft/WinGet/Packages/Schniz.fnm_Microsoft.Winget.Source_8wekyb3d8bbwe:/mnt/c/Users/tjsdb/AppData/Roaming/npm:/mnt/c/Users/tjsdb/.dotnet/tools:/snap/bin'), ('WT_SESSION', '356a57c3-3e52-4640-a77d-d220e69ebb4d'), ('XDG_RUNTIME_DIR', '/run/user/1000/'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('AMENT_PREFIX_PATH', '/home/sy/ros2_ws/install/ros_tcp_endpoint:/home/sy/ros2_ws/install/mower_ai:/home/sy/ros2_ws/install/mower_msgs:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('PWD', '/home/sy/ros2_ws/build/mower_msgs'), ('XDG_DATA_DIRS', '/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/sy/ros2_ws/install/ros_tcp_endpoint/lib/python3.10/site-packages:/home/sy/ros2_ws/install/mower_ai/lib/python3.10/site-packages:/home/sy/ros2_ws/install/mower_msgs/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('WSL2_GUI_APPS_ENABLED', '1'), ('HOSTTYPE', 'x86_64'), ('CMAKE_PREFIX_PATH', '/home/sy/ros2_ws/install/mower_msgs:/home/sy/ros2_ws/install/ros_tcp_endpoint:/home/sy/ros2_ws/install/mower_ai:/opt/ros/humble'), ('WSLENV', 'WT_SESSION:WT_PROFILE_ID:')]), 'shell': False}
+[6.476061] (mower_msgs) StdoutLine: {'line': b'[  3%] \x1b[34m\x1b[1mGenerating C code for ROS interfaces\x1b[0m\n'}
+[6.488887] (mower_msgs) StdoutLine: {'line': b'[  6%] \x1b[34m\x1b[1mGenerating C++ code for ROS interfaces\x1b[0m\n'}
+[6.501422] (mower_msgs) StdoutLine: {'line': b'[  6%] Built target ament_cmake_python_symlink_mower_msgs\n'}
+[6.512483] (-) TimerEvent: {}
+[6.613319] (-) TimerEvent: {}
+[6.714974] (-) TimerEvent: {}
+[6.818046] (-) TimerEvent: {}
+[6.851425] (mower_msgs) StdoutLine: {'line': b'running egg_info\n'}
+[6.852551] (mower_msgs) StdoutLine: {'line': b'creating mower_msgs.egg-info\n'}
+[6.853419] (mower_msgs) StdoutLine: {'line': b'writing mower_msgs.egg-info/PKG-INFO\n'}
+[6.853833] (mower_msgs) StdoutLine: {'line': b'writing dependency_links to mower_msgs.egg-info/dependency_links.txt\n'}
+[6.854067] (mower_msgs) StdoutLine: {'line': b'writing top-level names to mower_msgs.egg-info/top_level.txt\n'}
+[6.854498] (mower_msgs) StdoutLine: {'line': b"writing manifest file 'mower_msgs.egg-info/SOURCES.txt'\n"}
+[6.864276] (mower_msgs) StdoutLine: {'line': b"reading manifest file 'mower_msgs.egg-info/SOURCES.txt'\n"}
+[6.864683] (mower_msgs) StdoutLine: {'line': b"writing manifest file 'mower_msgs.egg-info/SOURCES.txt'\n"}
+[6.882476] (mower_msgs) StdoutLine: {'line': b'[  6%] Built target mower_msgs__cpp\n'}
+[6.896041] (mower_msgs) StdoutLine: {'line': b'[ 12%] \x1b[34m\x1b[1mGenerating C++ introspection for ROS interfaces\x1b[0m\n'}
+[6.896376] (mower_msgs) StdoutLine: {'line': b'[ 12%] \x1b[32mBuilding C object CMakeFiles/mower_msgs__rosidl_generator_c.dir/rosidl_generator_c/mower_msgs/msg/detail/detected_object__functions.c.o\x1b[0m\n'}
+[6.896519] (mower_msgs) StdoutLine: {'line': b'[ 16%] \x1b[34m\x1b[1mGenerating C++ type support dispatch for ROS interfaces\x1b[0m\n'}
+[6.896743] (mower_msgs) StdoutLine: {'line': b'[ 19%] \x1b[34m\x1b[1mGenerating C++ type support for eProsima Fast-RTPS\x1b[0m\n'}
+[6.906670] (mower_msgs) StdoutLine: {'line': b'[ 19%] Built target ament_cmake_python_build_mower_msgs_egg\n'}
+[6.918888] (-) TimerEvent: {}
+[6.989369] (mower_msgs) StdoutLine: {'line': b'[ 22%] \x1b[32m\x1b[1mLinking C shared library libmower_msgs__rosidl_generator_c.so\x1b[0m\n'}
+[7.019814] (-) TimerEvent: {}
+[7.128625] (-) TimerEvent: {}
+[7.191679] (mower_msgs) StdoutLine: {'line': b'[ 25%] \x1b[32mBuilding CXX object CMakeFiles/mower_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/mower_msgs/msg/detected_object__type_support.cpp.o\x1b[0m\n'}
+[7.216578] (mower_msgs) StdoutLine: {'line': b'[ 29%] \x1b[32mBuilding CXX object CMakeFiles/mower_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/mower_msgs/msg/detail/detected_object__type_support.cpp.o\x1b[0m\n'}
+[7.217776] (mower_msgs) StdoutLine: {'line': b'[ 29%] Built target mower_msgs__rosidl_generator_c\n'}
+[7.229715] (-) TimerEvent: {}
+[7.233383] (mower_msgs) StdoutLine: {'line': b'[ 35%] \x1b[32mBuilding CXX object CMakeFiles/mower_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/mower_msgs/msg/detail/dds_fastrtps/detected_object__type_support.cpp.o\x1b[0m\n'}
+[7.233712] (mower_msgs) StdoutLine: {'line': b'[ 35%] \x1b[34m\x1b[1mGenerating C type support dispatch for ROS interfaces\x1b[0m\n'}
+[7.233875] (mower_msgs) StdoutLine: {'line': b'[ 38%] \x1b[34m\x1b[1mGenerating C introspection for ROS interfaces\x1b[0m\n'}
+[7.234741] (mower_msgs) StdoutLine: {'line': b'[ 41%] \x1b[34m\x1b[1mGenerating C type support for eProsima Fast-RTPS\x1b[0m\n'}
+[7.330067] (-) TimerEvent: {}
+[7.434761] (-) TimerEvent: {}
+[7.535795] (-) TimerEvent: {}
+[7.606838] (mower_msgs) StdoutLine: {'line': b'[ 45%] \x1b[32mBuilding CXX object CMakeFiles/mower_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/mower_msgs/msg/detected_object__type_support.cpp.o\x1b[0m\n'}
+[7.638396] (-) TimerEvent: {}
+[7.647281] (mower_msgs) StdoutLine: {'line': b'[ 48%] \x1b[32mBuilding C object CMakeFiles/mower_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/mower_msgs/msg/detail/detected_object__type_support.c.o\x1b[0m\n'}
+[7.654473] (mower_msgs) StdoutLine: {'line': b'[ 51%] \x1b[32m\x1b[1mLinking CXX shared library libmower_msgs__rosidl_typesupport_c.so\x1b[0m\n'}
+[7.662019] (mower_msgs) StdoutLine: {'line': b'[ 54%] \x1b[32mBuilding CXX object CMakeFiles/mower_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/mower_msgs/msg/detail/detected_object__type_support_c.cpp.o\x1b[0m\n'}
+[7.677243] (mower_msgs) StdoutLine: {'line': b'[ 58%] \x1b[32m\x1b[1mLinking CXX shared library libmower_msgs__rosidl_typesupport_cpp.so\x1b[0m\n'}
+[7.701827] (mower_msgs) StdoutLine: {'line': b'[ 61%] \x1b[32m\x1b[1mLinking C shared library libmower_msgs__rosidl_typesupport_introspection_c.so\x1b[0m\n'}
+[7.741587] (-) TimerEvent: {}
+[7.833074] (mower_msgs) StdoutLine: {'line': b'[ 64%] \x1b[32m\x1b[1mLinking CXX shared library libmower_msgs__rosidl_typesupport_introspection_cpp.so\x1b[0m\n'}
+[7.842031] (-) TimerEvent: {}
+[7.847678] (mower_msgs) StdoutLine: {'line': b'[ 67%] \x1b[32m\x1b[1mLinking CXX shared library libmower_msgs__rosidl_typesupport_fastrtps_cpp.so\x1b[0m\n'}
+[7.941027] (mower_msgs) StdoutLine: {'line': b'[ 67%] Built target mower_msgs__rosidl_typesupport_c\n'}
+[7.942191] (-) TimerEvent: {}
+[7.949429] (mower_msgs) StdoutLine: {'line': b'[ 67%] Built target mower_msgs__rosidl_typesupport_cpp\n'}
+[7.958374] (mower_msgs) StdoutLine: {'line': b'[ 67%] Built target mower_msgs__rosidl_typesupport_introspection_c\n'}
+[8.042583] (-) TimerEvent: {}
+[8.068824] (mower_msgs) StdoutLine: {'line': b'[ 67%] Built target mower_msgs__rosidl_typesupport_introspection_cpp\n'}
+[8.122035] (mower_msgs) StdoutLine: {'line': b'[ 70%] \x1b[32m\x1b[1mLinking CXX shared library libmower_msgs__rosidl_typesupport_fastrtps_c.so\x1b[0m\n'}
+[8.132924] (mower_msgs) StdoutLine: {'line': b'[ 70%] Built target mower_msgs__rosidl_typesupport_fastrtps_cpp\n'}
+[8.142959] (-) TimerEvent: {}
+[8.243751] (-) TimerEvent: {}
+[8.346203] (-) TimerEvent: {}
+[8.373189] (mower_msgs) StdoutLine: {'line': b'[ 70%] Built target mower_msgs__rosidl_typesupport_fastrtps_c\n'}
+[8.399262] (mower_msgs) StdoutLine: {'line': b'[ 70%] Built target mower_msgs\n'}
+[8.424600] (mower_msgs) StdoutLine: {'line': b'[ 74%] \x1b[34m\x1b[1mGenerating Python code for ROS interfaces\x1b[0m\n'}
+[8.446979] (-) TimerEvent: {}
+[8.548090] (-) TimerEvent: {}
+[8.649280] (-) TimerEvent: {}
+[8.754567] (-) TimerEvent: {}
+[8.856911] (-) TimerEvent: {}
+[8.867444] (mower_msgs) StdoutLine: {'line': b'[ 74%] Built target mower_msgs__py\n'}
+[8.894881] (mower_msgs) StdoutLine: {'line': b'[ 77%] \x1b[32mBuilding C object CMakeFiles/mower_msgs__rosidl_generator_py.dir/rosidl_generator_py/mower_msgs/msg/_detected_object_s.c.o\x1b[0m\n'}
+[8.957677] (-) TimerEvent: {}
+[9.059575] (-) TimerEvent: {}
+[9.092683] (mower_msgs) StdoutLine: {'line': b'[ 80%] \x1b[32m\x1b[1mLinking C shared library rosidl_generator_py/mower_msgs/libmower_msgs__rosidl_generator_py.so\x1b[0m\n'}
+[9.160076] (-) TimerEvent: {}
+[9.260752] (-) TimerEvent: {}
+[9.343904] (mower_msgs) StdoutLine: {'line': b'[ 80%] Built target mower_msgs__rosidl_generator_py\n'}
+[9.361019] (-) TimerEvent: {}
+[9.375429] (mower_msgs) StdoutLine: {'line': b'[ 90%] \x1b[32mBuilding C object CMakeFiles/mower_msgs__rosidl_typesupport_c__pyext.dir/rosidl_generator_py/mower_msgs/_mower_msgs_s.ep.rosidl_typesupport_c.c.o\x1b[0m\n'}
+[9.375788] (mower_msgs) StdoutLine: {'line': b'[ 90%] \x1b[32mBuilding C object CMakeFiles/mower_msgs__rosidl_typesupport_fastrtps_c__pyext.dir/rosidl_generator_py/mower_msgs/_mower_msgs_s.ep.rosidl_typesupport_fastrtps_c.c.o\x1b[0m\n'}
+[9.375889] (mower_msgs) StdoutLine: {'line': b'[ 90%] \x1b[32mBuilding C object CMakeFiles/mower_msgs__rosidl_typesupport_introspection_c__pyext.dir/rosidl_generator_py/mower_msgs/_mower_msgs_s.ep.rosidl_typesupport_introspection_c.c.o\x1b[0m\n'}
+[9.461320] (-) TimerEvent: {}
+[9.534323] (mower_msgs) StdoutLine: {'line': b'[ 96%] \x1b[32m\x1b[1mLinking C shared library rosidl_generator_py/mower_msgs/mower_msgs_s__rosidl_typesupport_introspection_c.cpython-310-x86_64-linux-gnu.so\x1b[0m\n'}
+[9.534724] (mower_msgs) StdoutLine: {'line': b'[ 96%] \x1b[32m\x1b[1mLinking C shared library rosidl_generator_py/mower_msgs/mower_msgs_s__rosidl_typesupport_c.cpython-310-x86_64-linux-gnu.so\x1b[0m\n'}
+[9.535501] (mower_msgs) StdoutLine: {'line': b'[100%] \x1b[32m\x1b[1mLinking C shared library rosidl_generator_py/mower_msgs/mower_msgs_s__rosidl_typesupport_fastrtps_c.cpython-310-x86_64-linux-gnu.so\x1b[0m\n'}
+[9.561633] (-) TimerEvent: {}
+[9.667376] (-) TimerEvent: {}
+[9.739086] (mower_msgs) StdoutLine: {'line': b'[100%] Built target mower_msgs__rosidl_typesupport_fastrtps_c__pyext\n'}
+[9.739586] (mower_msgs) StdoutLine: {'line': b'[100%] Built target mower_msgs__rosidl_typesupport_introspection_c__pyext\n'}
+[9.739683] (mower_msgs) StdoutLine: {'line': b'[100%] Built target mower_msgs__rosidl_typesupport_c__pyext\n'}
+[9.757794] (mower_msgs) CommandEnded: {'returncode': 0}
+[9.758865] (mower_msgs) JobProgress: {'identifier': 'mower_msgs', 'progress': 'install'}
+[9.768214] (-) TimerEvent: {}
+[9.773493] (mower_msgs) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/sy/ros2_ws/build/mower_msgs'], 'cwd': '/home/sy/ros2_ws/build/mower_msgs', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'sy'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/sy/ros2_ws/install/mower_msgs/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('WT_PROFILE_ID', '{4ff56d04-d9cf-57ea-bae2-ad396374e7e3}'), ('MOTD_SHOWN', 'update-motd'), ('HOME', '/home/sy'), ('OLDPWD', '/home/sy/ros2_ws'), ('ROS_PYTHON_VERSION', '3'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('WSL_DISTRO_NAME', 'Ubuntu-22.04'), ('WAYLAND_DISPLAY', 'wayland-0'), ('COLCON_PREFIX_PATH', '/home/sy/ros2_ws/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'sy'), ('NAME', 'S'), ('WSL_INTEROP', '/run/WSL/313_interop'), ('PULSE_SERVER', 'unix:/mnt/wslg/PulseServer'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('TERM', 'xterm-256color'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/home/sy/.local/bin:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Users/tjsdb/AppData/Local/Programs/Python/Python313/Scripts/:/mnt/c/Users/tjsdb/AppData/Local/Programs/Python/Python313/:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common:/mnt/c/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/:/mnt/c/Program Files/Bandizip/:/mnt/c/Program Files/NVIDIA Corporation/NVIDIA app/NvDLISR:/mnt/c/Program Files/dotnet/:/mnt/c/Program Files/Git/cmd:/mnt/c/mingw64/bin:/mnt/c/ProgramData/chocolatey/bin:/mnt/c/Program Files/Docker/Docker/resources/bin:/mnt/c/Program Files/nodejs/:/mnt/c/msys64/mingw64/bin:/mnt/c/msys64/usr/bin:/mnt/c/Program Files/PuTTY/:/mnt/c/Users/tjsdb/AppData/Local/Programs/Python/Launcher/:/mnt/c/Users/tjsdb/AppData/Local/Microsoft/WindowsApps:/mnt/c/Program Files/JetBrains/IntelliJ IDEA 2024.3.2/bin:/mnt/c/Program Files/MariaDB 10.6/bin:/mnt/c/Users/tjsdb/AppData/Local/spicetify:/mnt/c/Users/tjsdb/AppData/Local/Programs/Microsoft VS Code/bin:/mnt/c/Users/tjsdb/AppData/Local/Microsoft/WinGet/Packages/Schniz.fnm_Microsoft.Winget.Source_8wekyb3d8bbwe:/mnt/c/Users/tjsdb/AppData/Roaming/npm:/mnt/c/Users/tjsdb/.dotnet/tools:/snap/bin'), ('WT_SESSION', '356a57c3-3e52-4640-a77d-d220e69ebb4d'), ('XDG_RUNTIME_DIR', '/run/user/1000/'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('AMENT_PREFIX_PATH', '/home/sy/ros2_ws/install/ros_tcp_endpoint:/home/sy/ros2_ws/install/mower_ai:/home/sy/ros2_ws/install/mower_msgs:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('PWD', '/home/sy/ros2_ws/build/mower_msgs'), ('XDG_DATA_DIRS', '/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/sy/ros2_ws/install/ros_tcp_endpoint/lib/python3.10/site-packages:/home/sy/ros2_ws/install/mower_ai/lib/python3.10/site-packages:/home/sy/ros2_ws/install/mower_msgs/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('WSL2_GUI_APPS_ENABLED', '1'), ('HOSTTYPE', 'x86_64'), ('CMAKE_PREFIX_PATH', '/home/sy/ros2_ws/install/mower_msgs:/home/sy/ros2_ws/install/ros_tcp_endpoint:/home/sy/ros2_ws/install/mower_ai:/opt/ros/humble'), ('WSLENV', 'WT_SESSION:WT_PROFILE_ID:')]), 'shell': False}
+[9.782554] (mower_msgs) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[9.783249] (mower_msgs) StdoutLine: {'line': b'-- Execute custom install script\n'}
+[9.784993] (mower_msgs) StdoutLine: {'line': b'-- Symlinking: /home/sy/ros2_ws/install/mower_msgs/share/ament_index/resource_index/rosidl_interfaces/mower_msgs\n'}
+[9.798583] (mower_msgs) StdoutLine: {'line': b'-- Symlinking: /home/sy/ros2_ws/install/mower_msgs/include/mower_msgs/mower_msgs/msg/detail/detected_object__functions.h\n'}
+[9.810824] (mower_msgs) StdoutLine: {'line': b'-- Symlinking: /home/sy/ros2_ws/install/mower_msgs/include/mower_msgs/mower_msgs/msg/detail/detected_object__struct.h\n'}
+[9.823689] (mower_msgs) StdoutLine: {'line': b'-- Symlinking: /home/sy/ros2_ws/install/mower_msgs/include/mower_msgs/mower_msgs/msg/detail/detected_object__type_support.h\n'}
+[9.835735] (mower_msgs) StdoutLine: {'line': b'-- Symlinking: /home/sy/ros2_ws/install/mower_msgs/include/mower_msgs/mower_msgs/msg/detected_object.h\n'}
+[9.850535] (mower_msgs) StdoutLine: {'line': b'-- Symlinking: /home/sy/ros2_ws/install/mower_msgs/include/mower_msgs/mower_msgs/msg/rosidl_generator_c__visibility_control.h\n'}
+[9.862697] (mower_msgs) StdoutLine: {'line': b'-- Symlinking: /home/sy/ros2_ws/install/mower_msgs/share/mower_msgs/environment/library_path.sh\n'}
+[9.868926] (-) TimerEvent: {}
+[9.875645] (mower_msgs) StdoutLine: {'line': b'-- Symlinking: /home/sy/ros2_ws/install/mower_msgs/share/mower_msgs/environment/library_path.dsv\n'}
+[9.887825] (mower_msgs) StdoutLine: {'line': b'-- Symlinking: /home/sy/ros2_ws/install/mower_msgs/include/mower_msgs/mower_msgs/msg/detail/detected_object__rosidl_typesupport_fastrtps_c.h\n'}
+[9.903110] (mower_msgs) StdoutLine: {'line': b'-- Symlinking: /home/sy/ros2_ws/install/mower_msgs/include/mower_msgs/mower_msgs/msg/rosidl_typesupport_fastrtps_c__visibility_control.h\n'}
+[9.918744] (mower_msgs) StdoutLine: {'line': b'-- Symlinking: /home/sy/ros2_ws/install/mower_msgs/include/mower_msgs/mower_msgs/msg/detail/detected_object__rosidl_typesupport_introspection_c.h\n'}
+[9.933186] (mower_msgs) StdoutLine: {'line': b'-- Symlinking: /home/sy/ros2_ws/install/mower_msgs/include/mower_msgs/mower_msgs/msg/rosidl_typesupport_introspection_c__visibility_control.h\n'}
+[9.944413] (mower_msgs) StdoutLine: {'line': b'-- Symlinking: /home/sy/ros2_ws/install/mower_msgs/include/mower_msgs/mower_msgs/msg/detail/detected_object__builder.hpp\n'}
+[9.957301] (mower_msgs) StdoutLine: {'line': b'-- Symlinking: /home/sy/ros2_ws/install/mower_msgs/include/mower_msgs/mower_msgs/msg/detail/detected_object__struct.hpp\n'}
+[9.968759] (mower_msgs) StdoutLine: {'line': b'-- Symlinking: /home/sy/ros2_ws/install/mower_msgs/include/mower_msgs/mower_msgs/msg/detail/detected_object__traits.hpp\n'}
+[9.969035] (-) TimerEvent: {}
+[9.984643] (mower_msgs) StdoutLine: {'line': b'-- Symlinking: /home/sy/ros2_ws/install/mower_msgs/include/mower_msgs/mower_msgs/msg/detail/detected_object__type_support.hpp\n'}
+[9.995812] (mower_msgs) StdoutLine: {'line': b'-- Symlinking: /home/sy/ros2_ws/install/mower_msgs/include/mower_msgs/mower_msgs/msg/detected_object.hpp\n'}
+[10.008160] (mower_msgs) StdoutLine: {'line': b'-- Symlinking: /home/sy/ros2_ws/install/mower_msgs/include/mower_msgs/mower_msgs/msg/rosidl_generator_cpp__visibility_control.hpp\n'}
+[10.020494] (mower_msgs) StdoutLine: {'line': b'-- Symlinking: /home/sy/ros2_ws/install/mower_msgs/include/mower_msgs/mower_msgs/msg/detail/detected_object__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[10.032349] (mower_msgs) StdoutLine: {'line': b'-- Symlinking: /home/sy/ros2_ws/install/mower_msgs/include/mower_msgs/mower_msgs/msg/rosidl_typesupport_fastrtps_cpp__visibility_control.h\n'}
+[10.044501] (mower_msgs) StdoutLine: {'line': b'-- Symlinking: /home/sy/ros2_ws/install/mower_msgs/include/mower_msgs/mower_msgs/msg/detail/detected_object__rosidl_typesupport_introspection_cpp.hpp\n'}
+[10.056521] (mower_msgs) StdoutLine: {'line': b'-- Symlinking: /home/sy/ros2_ws/install/mower_msgs/share/mower_msgs/environment/pythonpath.sh\n'}
+[10.069168] (mower_msgs) StdoutLine: {'line': b'-- Symlinking: /home/sy/ros2_ws/install/mower_msgs/share/mower_msgs/environment/pythonpath.dsv\n'}
+[10.069538] (-) TimerEvent: {}
+[10.083659] (mower_msgs) StdoutLine: {'line': b'-- Symlinking: /home/sy/ros2_ws/install/mower_msgs/local/lib/python3.10/dist-packages/mower_msgs-0.0.0-py3.10.egg-info/PKG-INFO\n'}
+[10.096535] (mower_msgs) StdoutLine: {'line': b'-- Symlinking: /home/sy/ros2_ws/install/mower_msgs/local/lib/python3.10/dist-packages/mower_msgs-0.0.0-py3.10.egg-info/SOURCES.txt\n'}
+[10.108232] (mower_msgs) StdoutLine: {'line': b'-- Symlinking: /home/sy/ros2_ws/install/mower_msgs/local/lib/python3.10/dist-packages/mower_msgs-0.0.0-py3.10.egg-info/dependency_links.txt\n'}
+[10.121751] (mower_msgs) StdoutLine: {'line': b'-- Symlinking: /home/sy/ros2_ws/install/mower_msgs/local/lib/python3.10/dist-packages/mower_msgs-0.0.0-py3.10.egg-info/top_level.txt\n'}
+[10.134256] (mower_msgs) StdoutLine: {'line': b'-- Symlinking: /home/sy/ros2_ws/install/mower_msgs/local/lib/python3.10/dist-packages/mower_msgs/__init__.py\n'}
+[10.145852] (mower_msgs) StdoutLine: {'line': b'-- Symlinking: /home/sy/ros2_ws/install/mower_msgs/local/lib/python3.10/dist-packages/mower_msgs/_mower_msgs_s.ep.rosidl_typesupport_c.c\n'}
+[10.158522] (mower_msgs) StdoutLine: {'line': b'-- Symlinking: /home/sy/ros2_ws/install/mower_msgs/local/lib/python3.10/dist-packages/mower_msgs/_mower_msgs_s.ep.rosidl_typesupport_fastrtps_c.c\n'}
+[10.170030] (mower_msgs) StdoutLine: {'line': b'-- Symlinking: /home/sy/ros2_ws/install/mower_msgs/local/lib/python3.10/dist-packages/mower_msgs/_mower_msgs_s.ep.rosidl_typesupport_introspection_c.c\n'}
+[10.170363] (-) TimerEvent: {}
+[10.182507] (mower_msgs) StdoutLine: {'line': b'-- Symlinking: /home/sy/ros2_ws/install/mower_msgs/local/lib/python3.10/dist-packages/mower_msgs/libmower_msgs__rosidl_generator_py.so\n'}
+[10.194012] (mower_msgs) StdoutLine: {'line': b'-- Symlinking: /home/sy/ros2_ws/install/mower_msgs/local/lib/python3.10/dist-packages/mower_msgs/mower_msgs_s__rosidl_typesupport_c.cpython-310-x86_64-linux-gnu.so\n'}
+[10.207970] (mower_msgs) StdoutLine: {'line': b'-- Symlinking: /home/sy/ros2_ws/install/mower_msgs/local/lib/python3.10/dist-packages/mower_msgs/mower_msgs_s__rosidl_typesupport_fastrtps_c.cpython-310-x86_64-linux-gnu.so\n'}
+[10.222665] (mower_msgs) StdoutLine: {'line': b'-- Symlinking: /home/sy/ros2_ws/install/mower_msgs/local/lib/python3.10/dist-packages/mower_msgs/mower_msgs_s__rosidl_typesupport_introspection_c.cpython-310-x86_64-linux-gnu.so\n'}
+[10.238035] (mower_msgs) StdoutLine: {'line': b'-- Symlinking: /home/sy/ros2_ws/install/mower_msgs/local/lib/python3.10/dist-packages/mower_msgs/msg/__init__.py\n'}
+[10.250038] (mower_msgs) StdoutLine: {'line': b'-- Symlinking: /home/sy/ros2_ws/install/mower_msgs/local/lib/python3.10/dist-packages/mower_msgs/msg/_detected_object.py\n'}
+[10.261353] (mower_msgs) StdoutLine: {'line': b'-- Symlinking: /home/sy/ros2_ws/install/mower_msgs/local/lib/python3.10/dist-packages/mower_msgs/msg/_detected_object_s.c\n'}
+[10.271295] (-) TimerEvent: {}
+[10.274777] (mower_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/sy/ros2_ws/install/mower_msgs/local/lib/python3.10/dist-packages/mower_msgs/mower_msgs_s__rosidl_typesupport_fastrtps_c.cpython-310-x86_64-linux-gnu.so\n'}
+[10.275194] (mower_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/sy/ros2_ws/install/mower_msgs/local/lib/python3.10/dist-packages/mower_msgs/mower_msgs_s__rosidl_typesupport_introspection_c.cpython-310-x86_64-linux-gnu.so\n'}
+[10.275552] (mower_msgs) StdoutLine: {'line': b'-- Up-to-date symlink: /home/sy/ros2_ws/install/mower_msgs/local/lib/python3.10/dist-packages/mower_msgs/mower_msgs_s__rosidl_typesupport_c.cpython-310-x86_64-linux-gnu.so\n'}
+[10.276420] (mower_msgs) StdoutLine: {'line': b'-- Symlinking: /home/sy/ros2_ws/install/mower_msgs/share/mower_msgs/msg/DetectedObject.idl\n'}
+[10.288030] (mower_msgs) StdoutLine: {'line': b'-- Symlinking: /home/sy/ros2_ws/install/mower_msgs/share/mower_msgs/msg/DetectedObject.msg\n'}
+[10.299354] (mower_msgs) StdoutLine: {'line': b'-- Symlinking: /home/sy/ros2_ws/install/mower_msgs/share/ament_index/resource_index/package_run_dependencies/mower_msgs\n'}
+[10.311614] (mower_msgs) StdoutLine: {'line': b'-- Symlinking: /home/sy/ros2_ws/install/mower_msgs/share/ament_index/resource_index/parent_prefix_path/mower_msgs\n'}
+[10.323460] (mower_msgs) StdoutLine: {'line': b'-- Symlinking: /home/sy/ros2_ws/install/mower_msgs/share/mower_msgs/environment/ament_prefix_path.sh\n'}
+[10.338341] (mower_msgs) StdoutLine: {'line': b'-- Symlinking: /home/sy/ros2_ws/install/mower_msgs/share/mower_msgs/environment/ament_prefix_path.dsv\n'}
+[10.353017] (mower_msgs) StdoutLine: {'line': b'-- Symlinking: /home/sy/ros2_ws/install/mower_msgs/share/mower_msgs/environment/path.sh\n'}
+[10.368965] (mower_msgs) StdoutLine: {'line': b'-- Symlinking: /home/sy/ros2_ws/install/mower_msgs/share/mower_msgs/environment/path.dsv\n'}
+[10.371589] (-) TimerEvent: {}
+[10.384960] (mower_msgs) StdoutLine: {'line': b'-- Symlinking: /home/sy/ros2_ws/install/mower_msgs/share/mower_msgs/local_setup.bash\n'}
+[10.401994] (mower_msgs) StdoutLine: {'line': b'-- Symlinking: /home/sy/ros2_ws/install/mower_msgs/share/mower_msgs/local_setup.sh\n'}
+[10.416433] (mower_msgs) StdoutLine: {'line': b'-- Symlinking: /home/sy/ros2_ws/install/mower_msgs/share/mower_msgs/local_setup.zsh\n'}
+[10.429706] (mower_msgs) StdoutLine: {'line': b'-- Symlinking: /home/sy/ros2_ws/install/mower_msgs/share/mower_msgs/local_setup.dsv\n'}
+[10.443253] (mower_msgs) StdoutLine: {'line': b'-- Symlinking: /home/sy/ros2_ws/install/mower_msgs/share/mower_msgs/package.dsv\n'}
+[10.456576] (mower_msgs) StdoutLine: {'line': b'-- Symlinking: /home/sy/ros2_ws/install/mower_msgs/share/ament_index/resource_index/packages/mower_msgs\n'}
+[10.471300] (mower_msgs) StdoutLine: {'line': b'-- Symlinking: /home/sy/ros2_ws/install/mower_msgs/share/mower_msgs/cmake/rosidl_cmake-extras.cmake\n'}
+[10.471647] (-) TimerEvent: {}
+[10.488933] (mower_msgs) StdoutLine: {'line': b'-- Symlinking: /home/sy/ros2_ws/install/mower_msgs/share/mower_msgs/cmake/ament_cmake_export_include_directories-extras.cmake\n'}
+[10.507938] (mower_msgs) StdoutLine: {'line': b'-- Symlinking: /home/sy/ros2_ws/install/mower_msgs/share/mower_msgs/cmake/ament_cmake_export_libraries-extras.cmake\n'}
+[10.526097] (mower_msgs) StdoutLine: {'line': b'-- Symlinking: /home/sy/ros2_ws/install/mower_msgs/share/mower_msgs/cmake/ament_cmake_export_targets-extras.cmake\n'}
+[10.541485] (mower_msgs) StdoutLine: {'line': b'-- Symlinking: /home/sy/ros2_ws/install/mower_msgs/share/mower_msgs/cmake/rosidl_cmake_export_typesupport_targets-extras.cmake\n'}
+[10.558735] (mower_msgs) StdoutLine: {'line': b'-- Symlinking: /home/sy/ros2_ws/install/mower_msgs/share/mower_msgs/cmake/ament_cmake_export_dependencies-extras.cmake\n'}
+[10.572028] (-) TimerEvent: {}
+[10.586192] (mower_msgs) StdoutLine: {'line': b'-- Symlinking: /home/sy/ros2_ws/install/mower_msgs/share/mower_msgs/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake\n'}
+[10.601597] (mower_msgs) StdoutLine: {'line': b'-- Symlinking: /home/sy/ros2_ws/install/mower_msgs/share/mower_msgs/cmake/mower_msgsConfig.cmake\n'}
+[10.615224] (mower_msgs) StdoutLine: {'line': b'-- Symlinking: /home/sy/ros2_ws/install/mower_msgs/share/mower_msgs/cmake/mower_msgsConfig-version.cmake\n'}
+[10.630837] (mower_msgs) StdoutLine: {'line': b'-- Symlinking: /home/sy/ros2_ws/install/mower_msgs/share/mower_msgs/package.xml\n'}
+[10.645145] (mower_msgs) StdoutLine: {'line': b'-- Installing: /home/sy/ros2_ws/install/mower_msgs/lib/libmower_msgs__rosidl_generator_c.so\n'}
+[10.645716] (mower_msgs) StdoutLine: {'line': b'-- Set runtime path of "/home/sy/ros2_ws/install/mower_msgs/lib/libmower_msgs__rosidl_generator_c.so" to ""\n'}
+[10.645959] (mower_msgs) StdoutLine: {'line': b'-- Installing: /home/sy/ros2_ws/install/mower_msgs/lib/libmower_msgs__rosidl_typesupport_fastrtps_c.so\n'}
+[10.646444] (mower_msgs) StdoutLine: {'line': b'-- Set runtime path of "/home/sy/ros2_ws/install/mower_msgs/lib/libmower_msgs__rosidl_typesupport_fastrtps_c.so" to ""\n'}
+[10.646692] (mower_msgs) StdoutLine: {'line': b'-- Installing: /home/sy/ros2_ws/install/mower_msgs/lib/libmower_msgs__rosidl_typesupport_introspection_c.so\n'}
+[10.647292] (mower_msgs) StdoutLine: {'line': b'-- Set runtime path of "/home/sy/ros2_ws/install/mower_msgs/lib/libmower_msgs__rosidl_typesupport_introspection_c.so" to ""\n'}
+[10.647597] (mower_msgs) StdoutLine: {'line': b'-- Installing: /home/sy/ros2_ws/install/mower_msgs/lib/libmower_msgs__rosidl_typesupport_c.so\n'}
+[10.647932] (mower_msgs) StdoutLine: {'line': b'-- Set runtime path of "/home/sy/ros2_ws/install/mower_msgs/lib/libmower_msgs__rosidl_typesupport_c.so" to ""\n'}
+[10.648240] (mower_msgs) StdoutLine: {'line': b'-- Installing: /home/sy/ros2_ws/install/mower_msgs/lib/libmower_msgs__rosidl_typesupport_fastrtps_cpp.so\n'}
+[10.648792] (mower_msgs) StdoutLine: {'line': b'-- Set runtime path of "/home/sy/ros2_ws/install/mower_msgs/lib/libmower_msgs__rosidl_typesupport_fastrtps_cpp.so" to ""\n'}
+[10.648957] (mower_msgs) StdoutLine: {'line': b'-- Installing: /home/sy/ros2_ws/install/mower_msgs/lib/libmower_msgs__rosidl_typesupport_introspection_cpp.so\n'}
+[10.649480] (mower_msgs) StdoutLine: {'line': b'-- Set runtime path of "/home/sy/ros2_ws/install/mower_msgs/lib/libmower_msgs__rosidl_typesupport_introspection_cpp.so" to ""\n'}
+[10.649761] (mower_msgs) StdoutLine: {'line': b'-- Installing: /home/sy/ros2_ws/install/mower_msgs/lib/libmower_msgs__rosidl_typesupport_cpp.so\n'}
+[10.650350] (mower_msgs) StdoutLine: {'line': b'-- Set runtime path of "/home/sy/ros2_ws/install/mower_msgs/lib/libmower_msgs__rosidl_typesupport_cpp.so" to ""\n'}
+[10.672327] (-) TimerEvent: {}
+[10.720160] (mower_msgs) StdoutLine: {'line': b"Listing '/home/sy/ros2_ws/install/mower_msgs/local/lib/python3.10/dist-packages/mower_msgs'...\n"}
+[10.720474] (mower_msgs) StdoutLine: {'line': b"Compiling '/home/sy/ros2_ws/install/mower_msgs/local/lib/python3.10/dist-packages/mower_msgs/__init__.py'...\n"}
+[10.720603] (mower_msgs) StdoutLine: {'line': b"Listing '/home/sy/ros2_ws/install/mower_msgs/local/lib/python3.10/dist-packages/mower_msgs/msg'...\n"}
+[10.720714] (mower_msgs) StdoutLine: {'line': b"Compiling '/home/sy/ros2_ws/install/mower_msgs/local/lib/python3.10/dist-packages/mower_msgs/msg/__init__.py'...\n"}
+[10.720813] (mower_msgs) StdoutLine: {'line': b"Compiling '/home/sy/ros2_ws/install/mower_msgs/local/lib/python3.10/dist-packages/mower_msgs/msg/_detected_object.py'...\n"}
+[10.730063] (mower_msgs) StdoutLine: {'line': b'-- Installing: /home/sy/ros2_ws/install/mower_msgs/lib/libmower_msgs__rosidl_generator_py.so\n'}
+[10.730760] (mower_msgs) StdoutLine: {'line': b'-- Set runtime path of "/home/sy/ros2_ws/install/mower_msgs/lib/libmower_msgs__rosidl_generator_py.so" to ""\n'}
+[10.731147] (mower_msgs) StdoutLine: {'line': b'-- Installing: /home/sy/ros2_ws/install/mower_msgs/share/mower_msgs/cmake/export_mower_msgs__rosidl_generator_cExport.cmake\n'}
+[10.731565] (mower_msgs) StdoutLine: {'line': b'-- Installing: /home/sy/ros2_ws/install/mower_msgs/share/mower_msgs/cmake/export_mower_msgs__rosidl_generator_cExport-noconfig.cmake\n'}
+[10.731759] (mower_msgs) StdoutLine: {'line': b'-- Installing: /home/sy/ros2_ws/install/mower_msgs/share/mower_msgs/cmake/export_mower_msgs__rosidl_typesupport_fastrtps_cExport.cmake\n'}
+[10.732015] (mower_msgs) StdoutLine: {'line': b'-- Installing: /home/sy/ros2_ws/install/mower_msgs/share/mower_msgs/cmake/export_mower_msgs__rosidl_typesupport_fastrtps_cExport-noconfig.cmake\n'}
+[10.732270] (mower_msgs) StdoutLine: {'line': b'-- Installing: /home/sy/ros2_ws/install/mower_msgs/share/mower_msgs/cmake/mower_msgs__rosidl_typesupport_introspection_cExport.cmake\n'}
+[10.732532] (mower_msgs) StdoutLine: {'line': b'-- Installing: /home/sy/ros2_ws/install/mower_msgs/share/mower_msgs/cmake/mower_msgs__rosidl_typesupport_introspection_cExport-noconfig.cmake\n'}
+[10.732849] (mower_msgs) StdoutLine: {'line': b'-- Installing: /home/sy/ros2_ws/install/mower_msgs/share/mower_msgs/cmake/mower_msgs__rosidl_typesupport_cExport.cmake\n'}
+[10.733116] (mower_msgs) StdoutLine: {'line': b'-- Installing: /home/sy/ros2_ws/install/mower_msgs/share/mower_msgs/cmake/mower_msgs__rosidl_typesupport_cExport-noconfig.cmake\n'}
+[10.733417] (mower_msgs) StdoutLine: {'line': b'-- Installing: /home/sy/ros2_ws/install/mower_msgs/share/mower_msgs/cmake/export_mower_msgs__rosidl_generator_cppExport.cmake\n'}
+[10.733762] (mower_msgs) StdoutLine: {'line': b'-- Installing: /home/sy/ros2_ws/install/mower_msgs/share/mower_msgs/cmake/export_mower_msgs__rosidl_typesupport_fastrtps_cppExport.cmake\n'}
+[10.734137] (mower_msgs) StdoutLine: {'line': b'-- Installing: /home/sy/ros2_ws/install/mower_msgs/share/mower_msgs/cmake/export_mower_msgs__rosidl_typesupport_fastrtps_cppExport-noconfig.cmake\n'}
+[10.734434] (mower_msgs) StdoutLine: {'line': b'-- Installing: /home/sy/ros2_ws/install/mower_msgs/share/mower_msgs/cmake/mower_msgs__rosidl_typesupport_introspection_cppExport.cmake\n'}
+[10.734737] (mower_msgs) StdoutLine: {'line': b'-- Installing: /home/sy/ros2_ws/install/mower_msgs/share/mower_msgs/cmake/mower_msgs__rosidl_typesupport_introspection_cppExport-noconfig.cmake\n'}
+[10.735082] (mower_msgs) StdoutLine: {'line': b'-- Installing: /home/sy/ros2_ws/install/mower_msgs/share/mower_msgs/cmake/mower_msgs__rosidl_typesupport_cppExport.cmake\n'}
+[10.735352] (mower_msgs) StdoutLine: {'line': b'-- Installing: /home/sy/ros2_ws/install/mower_msgs/share/mower_msgs/cmake/mower_msgs__rosidl_typesupport_cppExport-noconfig.cmake\n'}
+[10.735643] (mower_msgs) StdoutLine: {'line': b'-- Installing: /home/sy/ros2_ws/install/mower_msgs/share/mower_msgs/cmake/export_mower_msgs__rosidl_generator_pyExport.cmake\n'}
+[10.735995] (mower_msgs) StdoutLine: {'line': b'-- Installing: /home/sy/ros2_ws/install/mower_msgs/share/mower_msgs/cmake/export_mower_msgs__rosidl_generator_pyExport-noconfig.cmake\n'}
+[10.739944] (mower_msgs) CommandEnded: {'returncode': 0}
+[10.765061] (mower_msgs) JobEnded: {'identifier': 'mower_msgs', 'rc': 0}
+[10.767211] (mower_ai) JobStarted: {'identifier': 'mower_ai'}
+[10.772748] (-) TimerEvent: {}
+[10.875672] (-) TimerEvent: {}
+[10.984644] (-) TimerEvent: {}
+[11.093743] (-) TimerEvent: {}
+[11.202775] (-) TimerEvent: {}
+[11.311840] (-) TimerEvent: {}
+[11.420195] (-) TimerEvent: {}
+[11.526422] (-) TimerEvent: {}
+[11.635374] (-) TimerEvent: {}
+[11.744426] (-) TimerEvent: {}
+[11.853558] (-) TimerEvent: {}
+[11.962728] (-) TimerEvent: {}
+[12.071796] (-) TimerEvent: {}
+[12.180919] (-) TimerEvent: {}
+[12.290277] (-) TimerEvent: {}
+[12.399618] (-) TimerEvent: {}
+[12.429134] (mower_ai) Command: {'cmd': ['/usr/bin/python3', '-W', 'ignore:setup.py install is deprecated', '-W', 'ignore:easy_install command is deprecated', 'setup.py', 'develop', '--editable', '--build-directory', '/home/sy/ros2_ws/build/mower_ai/build', '--no-deps', 'symlink_data'], 'cwd': '/home/sy/ros2_ws/build/mower_ai', 'env': {'LESSOPEN': '| /usr/bin/lesspipe %s', 'USER': 'sy', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/home/sy/ros2_ws/install/mower_msgs/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib', 'WT_PROFILE_ID': '{4ff56d04-d9cf-57ea-bae2-ad396374e7e3}', 'MOTD_SHOWN': 'update-motd', 'HOME': '/home/sy', 'OLDPWD': '/home/sy/ros2_ws', 'ROS_PYTHON_VERSION': '3', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'WSL_DISTRO_NAME': 'Ubuntu-22.04', 'WAYLAND_DISPLAY': 'wayland-0', 'COLCON_PREFIX_PATH': '/home/sy/ros2_ws/install', 'ROS_DISTRO': 'humble', 'LOGNAME': 'sy', 'NAME': 'S', 'WSL_INTEROP': '/run/WSL/313_interop', 'PULSE_SERVER': 'unix:/mnt/wslg/PulseServer', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'TERM': 'xterm-256color', 'ROS_LOCALHOST_ONLY': '0', 'PATH': '/home/sy/.local/bin:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Users/tjsdb/AppData/Local/Programs/Python/Python313/Scripts/:/mnt/c/Users/tjsdb/AppData/Local/Programs/Python/Python313/:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common:/mnt/c/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/:/mnt/c/Program Files/Bandizip/:/mnt/c/Program Files/NVIDIA Corporation/NVIDIA app/NvDLISR:/mnt/c/Program Files/dotnet/:/mnt/c/Program Files/Git/cmd:/mnt/c/mingw64/bin:/mnt/c/ProgramData/chocolatey/bin:/mnt/c/Program Files/Docker/Docker/resources/bin:/mnt/c/Program Files/nodejs/:/mnt/c/msys64/mingw64/bin:/mnt/c/msys64/usr/bin:/mnt/c/Program Files/PuTTY/:/mnt/c/Users/tjsdb/AppData/Local/Programs/Python/Launcher/:/mnt/c/Users/tjsdb/AppData/Local/Microsoft/WindowsApps:/mnt/c/Program Files/JetBrains/IntelliJ IDEA 2024.3.2/bin:/mnt/c/Program Files/MariaDB 10.6/bin:/mnt/c/Users/tjsdb/AppData/Local/spicetify:/mnt/c/Users/tjsdb/AppData/Local/Programs/Microsoft VS Code/bin:/mnt/c/Users/tjsdb/AppData/Local/Microsoft/WinGet/Packages/Schniz.fnm_Microsoft.Winget.Source_8wekyb3d8bbwe:/mnt/c/Users/tjsdb/AppData/Roaming/npm:/mnt/c/Users/tjsdb/.dotnet/tools:/snap/bin', 'WT_SESSION': '356a57c3-3e52-4640-a77d-d220e69ebb4d', 'XDG_RUNTIME_DIR': '/run/user/1000/', 'DISPLAY': ':0', 'LANG': 'en_US.UTF-8', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'AMENT_PREFIX_PATH': '/home/sy/ros2_ws/install/ros_tcp_endpoint:/home/sy/ros2_ws/install/mower_ai:/home/sy/ros2_ws/install/mower_msgs:/opt/ros/humble', 'SHELL': '/bin/bash', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'PWD': '/home/sy/ros2_ws/build/mower_ai', 'XDG_DATA_DIRS': '/usr/local/share:/usr/share:/var/lib/snapd/desktop', 'PYTHONPATH': '/home/sy/ros2_ws/build/mower_ai/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/sy/ros2_ws/install/mower_ai/lib/python3.10/site-packages:/home/sy/ros2_ws/install/ros_tcp_endpoint/lib/python3.10/site-packages:/home/sy/ros2_ws/install/mower_ai/lib/python3.10/site-packages:/home/sy/ros2_ws/install/mower_msgs/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages', 'COLCON': '1', 'WSL2_GUI_APPS_ENABLED': '1', 'HOSTTYPE': 'x86_64', 'CMAKE_PREFIX_PATH': '/home/sy/ros2_ws/install/mower_msgs', 'WSLENV': 'WT_SESSION:WT_PROFILE_ID:'}, 'shell': False}
+[12.505451] (-) TimerEvent: {}
+[12.614919] (-) TimerEvent: {}
+[12.722620] (-) TimerEvent: {}
+[12.825162] (mower_ai) StdoutLine: {'line': b'running develop\n'}
+[12.827406] (-) TimerEvent: {}
+[12.936404] (-) TimerEvent: {}
+[13.032917] (mower_ai) StdoutLine: {'line': b'running egg_info\n'}
+[13.033279] (mower_ai) StdoutLine: {'line': b'creating mower_ai.egg-info\n'}
+[13.034268] (mower_ai) StdoutLine: {'line': b'writing mower_ai.egg-info/PKG-INFO\n'}
+[13.034777] (mower_ai) StdoutLine: {'line': b'writing dependency_links to mower_ai.egg-info/dependency_links.txt\n'}
+[13.035152] (mower_ai) StdoutLine: {'line': b'writing entry points to mower_ai.egg-info/entry_points.txt\n'}
+[13.035437] (mower_ai) StdoutLine: {'line': b'writing requirements to mower_ai.egg-info/requires.txt\n'}
+[13.035760] (mower_ai) StdoutLine: {'line': b'writing top-level names to mower_ai.egg-info/top_level.txt\n'}
+[13.036078] (mower_ai) StdoutLine: {'line': b"writing manifest file 'mower_ai.egg-info/SOURCES.txt'\n"}
+[13.036537] (-) TimerEvent: {}
+[13.039953] (mower_ai) StdoutLine: {'line': b"reading manifest file 'mower_ai.egg-info/SOURCES.txt'\n"}
+[13.040907] (mower_ai) StdoutLine: {'line': b"writing manifest file 'mower_ai.egg-info/SOURCES.txt'\n"}
+[13.043159] (mower_ai) StdoutLine: {'line': b'running build_ext\n'}
+[13.043501] (mower_ai) StdoutLine: {'line': b'Creating /home/sy/ros2_ws/install/mower_ai/lib/python3.10/site-packages/mower-ai.egg-link (link to .)\n'}
+[13.044733] (mower_ai) StdoutLine: {'line': b'Installing ai_controller script to /home/sy/ros2_ws/install/mower_ai/lib/mower_ai\n'}
+[13.045576] (mower_ai) StdoutLine: {'line': b'\n'}
+[13.045773] (mower_ai) StdoutLine: {'line': b'Installed /home/sy/ros2_ws/build/mower_ai\n'}
+[13.045980] (mower_ai) StdoutLine: {'line': b'running symlink_data\n'}
+[13.046356] (mower_ai) StdoutLine: {'line': b'creating /home/sy/ros2_ws/install/mower_ai/share/ament_index\n'}
+[13.046531] (mower_ai) StdoutLine: {'line': b'creating /home/sy/ros2_ws/install/mower_ai/share/ament_index/resource_index\n'}
+[13.046800] (mower_ai) StdoutLine: {'line': b'creating /home/sy/ros2_ws/install/mower_ai/share/ament_index/resource_index/packages\n'}
+[13.047131] (mower_ai) StdoutLine: {'line': b'symbolically linking /home/sy/ros2_ws/build/mower_ai/resource/mower_ai -> /home/sy/ros2_ws/install/mower_ai/share/ament_index/resource_index/packages\n'}
+[13.047480] (mower_ai) StdoutLine: {'line': b'symbolically linking /home/sy/ros2_ws/build/mower_ai/package.xml -> /home/sy/ros2_ws/install/mower_ai/share/mower_ai\n'}
+[13.047871] (mower_ai) StdoutLine: {'line': b'creating /home/sy/ros2_ws/install/mower_ai/share/mower_ai/launch\n'}
+[13.048312] (mower_ai) StdoutLine: {'line': b'symbolically linking /home/sy/ros2_ws/build/mower_ai/launch/mower_launch.py -> /home/sy/ros2_ws/install/mower_ai/share/mower_ai/launch\n'}
+[13.048485] (mower_ai) StdoutLine: {'line': b'creating /home/sy/ros2_ws/install/mower_ai/share/mower_ai/config\n'}
+[13.048830] (mower_ai) StdoutLine: {'line': b'symbolically linking /home/sy/ros2_ws/build/mower_ai/config/slam.yaml -> /home/sy/ros2_ws/install/mower_ai/share/mower_ai/config\n'}
+[13.112794] (mower_ai) CommandEnded: {'returncode': 0}
+[13.131946] (mower_ai) JobEnded: {'identifier': 'mower_ai', 'rc': 0}
+[13.134606] (-) EventReactorShutdown: {}
