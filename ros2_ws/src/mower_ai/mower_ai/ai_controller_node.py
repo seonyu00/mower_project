@@ -115,6 +115,9 @@ class AiControllerNode(Node):
         self.map_info = None
         self.GRID_SIZE_M = 0.8 
         
+        # 액션 락(Lock)을 위한 타이머와 저장소
+        self.action_lock_timer = 0  # 이 값이 0보다 크면 AI 판단을 생략하고 이전 행동 반복
+        self.locked_action = 4      # 저장된 행동 (기본 정지)
 
         # --- ROS 통신 ---
         qos_map = QoSProfile(depth=1, reliability=ReliabilityPolicy.RELIABLE, durability=DurabilityPolicy.TRANSIENT_LOCAL)
@@ -333,12 +336,37 @@ class AiControllerNode(Node):
             return False
 
     def build_state_for_ppo(self):
+
+        # PPO 모드일 때는 목표점(Target)을 내 위치 기준으로 실시간 갱신해야 함
+        # 그래야 사람을 피하면서도 '경로 쪽으로' 움직이려고 노력함
+        
+        current_target_idx = self.wp_idx
+
+        # 만약 PPO 모드이고, 기존 경로가 남아있다면?
+        if self.current_state == State.PPO_HUMAN_AVOID and self.global_path:
+            #  내 현재 위치에서 가장 가까운 경로점 찾기 (수학적 계산)
+            path_arr = np.array(self.global_path)
+            dists = np.linalg.norm(path_arr - self.current_pose_xy, axis=1)
+            nearest_idx = np.argmin(dists)
+            
+            # 그 점보다 조금 앞(Look Ahead)을 목표로 설정
+            # 너무 가까운 점을 찍으면 제자리에서 돔, 3~5칸 앞을 보게 함
+            look_ahead_step = 5 
+            current_target_idx = min(nearest_idx + look_ahead_step, len(self.global_path) - 1)
+            
+            #  디버깅 AI가 어디를 목표로 삼았는지 출력
+            self.get_logger().info(f"PPO Dynamic Target: WP {current_target_idx}", throttle_duration_sec=2.0)
+
         # 1. Goal Info (3)
-        target = self.global_path[self.wp_idx] if self.wp_idx < len(self.global_path) else self.global_path[-1]
+        target = self.global_path[current_target_idx] if current_target_idx < len(self.global_path) else self.global_path[-1]
         dx = target[0] - self.current_pose_xy[0]
         dy = target[1] - self.current_pose_xy[1]
         dist = np.hypot(dx, dy)
         angle = np.arctan2(dy, dx) - self.current_pose_yaw
+        
+        # 각도 정규화 (-PI ~ PI)
+        while angle > np.pi: angle -= 2 * np.pi
+        while angle < -np.pi: angle += 2 * np.pi
         
         goal_feats = [min(dist, self.params.R_GOAL_M) / self.params.R_GOAL_M, 
                       np.cos(angle), 
@@ -604,12 +632,13 @@ class AiControllerNode(Node):
         #  사람 회피 모드 (PPO)
         # =================================================================
         elif self.current_state == State.PPO_HUMAN_AVOID:
-             # [안전 장치] 사람이 너무 가까우면(1.0m 이내) PPO고 뭐고 일단 급정지
+             # [안전 장치] 사람이 너무 가까우면(1.5m 이내) PPO고 뭐고 일단 급정지
             if self.latest_human_data and self.latest_human_data.distance < 1.5:
                 self.get_logger().error("🚨 HUMAN TOO CLOSE! EMERGENCY STOP!", throttle_duration_sec=1.0)
                 twist.linear.x = 0.0
                 twist.angular.z = 0.0
                 self.cmd_vel_publisher.publish(twist)
+                self.action_lock_timer = 0 # 락 초기화
                 return # PPO 실행 스킵
             
             # 1. 탈출 조건 (3초 동안 사람 없으면 복귀)
@@ -619,23 +648,46 @@ class AiControllerNode(Node):
                 self.current_state = State.PLANNING
                 self.global_path = [] 
                 self.human_clear_timer = 0
+                self.action_lock_timer = 0 # 락 초기화
                 return 
 
-            # 2. PPO 실행
+            # 2. PPO 실행 (Action Locking 적용)
             if self.ppo_model:
-                obs = self.build_state_for_ppo()
-                with torch.no_grad():
-                    tensor = torch.FloatTensor(obs).unsqueeze(0)
-                    logits, _ = self.ppo_model(tensor)
-                    action = torch.argmax(logits).item()
+                action = 4 # 기본 정지
 
-                # PPO가 결정한 행동 수행
+                # (A) 락이 걸려있으면 -> AI한테 묻지 말고 저장된 행동 반복
+                if self.action_lock_timer > 0:
+                    action = self.locked_action
+                    self.action_lock_timer -= 1
+                    # self.get_logger().info(f"🔒 Locked Action: {action} (Rem: {self.action_lock_timer})")
+                
+                # (B) 락이 없으면 -> AI에게 물어봄
+                else:
+                    obs = self.build_state_for_ppo()
+                    with torch.no_grad():
+                        tensor = torch.FloatTensor(obs).unsqueeze(0)
+                        logits, _ = self.ppo_model(tensor)
+                        action = torch.argmax(logits).item()
+                    
+                    # [핵심 로직] 회전 행동(1:좌, 3:우)이 나오면 락을 건다!
+                    # 1(Left), 3(Right)일 경우에만 5프레임(0.5초) 동안 유지
+                    # 0(Forward)이나 2(Back)는 즉각 반응해도 괜찮음
+                    if action == 1 or action == 3:
+                        self.action_lock_timer = 5  # 0.1초 * 5 = 0.5초 동안 유지
+                        self.locked_action = action
+                        self.get_logger().warn(f"🤖 PPO Turn START! Action {action} Locked for 0.5s")
+                    
+                    # 후진(2)의 경우도 조금 길게 잡아주면 좋음
+                    elif action == 2:
+                        self.action_lock_timer = 3  # 0.3초
+                        self.locked_action = action
+
+                # 액션 실행
                 lx, az = self.params.ACTION_MAP[action]
                 twist.linear.x = lx
                 twist.angular.z = az
-                self.get_logger().info(f"RUNAWAY: PPO Action {action}", throttle_duration_sec=0.5)
+                
             else:
-                # 모델이 없으면 그냥 정지
                 twist.linear.x = 0.0
                 twist.angular.z = 0.0
         
