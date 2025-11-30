@@ -46,9 +46,9 @@ class AIParams:
 
     ACTION_MAP = {
         0: (0.5, 0.0),   # 전진
-        1: (0.1, 1.2),   # 좌회전
+        1: (0.1, 0.8),   # 좌회전
         2: (-0.6, 0.0),  # 후진
-        3: (0.1, -1.2),  # 우회전
+        3: (0.1, -0.8),  # 우회전
         4: (0.0, 0.0),   # 정지
     }
     DANGER_M = 2.0 
@@ -125,6 +125,11 @@ class AiControllerNode(Node):
         # --- 사람 감지 타이머 ---
         self.human_detect_timer = 0.0
         self.human_clear_timer = 0.0
+
+        # PPO 판단 주기 조절용 변수
+        self.ppo_inference_timer = 0  # 카운터
+        self.PPO_INTERVAL = 3         # 3틱(0.3초)마다 판단
+        self.last_ppo_action = 4      # 이전에 결정한 행동 (기본 정지)
         
         # --- 경로 관련 ---
         self.global_path = [] 
@@ -345,8 +350,8 @@ class AiControllerNode(Node):
             d_col = int((dx - fixed_ox) / grid_res)
             d_row = int((dy - fixed_oy) / grid_res)
             
-            # 위험 반경 (예: 1.0m) -> 격자 칸 수
-            radius_cells = int(1.5 / grid_res) 
+            # 위험 반경 (예: 1.0m) -> 격자 칸 수 (위험 구역의 크기)
+            radius_cells = int(2.0 / grid_res) 
             
             # 사각형 형태로 벽 칠하기 (원형보다 계산 빠름)
             r_min = max(0, d_row - radius_cells)
@@ -647,7 +652,7 @@ class AiControllerNode(Node):
                     return
                 
                 # [장애물 감지 Re-planning 거리 1.2m]
-                SAFE_DIST_THRESHOLD = 1.2 
+                SAFE_DIST_THRESHOLD = 0.5 
                 if narrow_dist < SAFE_DIST_THRESHOLD:
                     self.get_logger().warn(f"Obstacle detected ahead ({narrow_dist:.2f}m)! STOP & REPLAN.")
                     self.cmd_vel_publisher.publish(Twist()) # 정지
@@ -659,67 +664,58 @@ class AiControllerNode(Node):
                     self.steps_after_planning = 0
                     return
             # =========================================================
-            # 4. [업그레이드] 주행 로직 (빙글빙글 방지 & 코너 감속)
+            # 격자형 주행 로직 (Stop & Turn Strategy)
             # =========================================================
             
-            # (1) Look Ahead 
-            look_dist = 1
+            # 1. 목표 설정: 격자 주행에서는 '바로 다음 점'을 봐야 각을 정확히 잡음
+            # Look Ahead를 너무 멀리 잡으면 코너를 잘라먹음
+            look_dist = 0 # 바로 다음 웨이포인트 (Index)
             look_ahead = min(self.wp_idx + look_dist, len(self.global_path) - 1)
             target = self.global_path[look_ahead]
-            curr_x, curr_y = self.current_pose_xy
+            
+            curr_x = self.current_pose_xy[0]
+            curr_y = self.current_pose_xy[1]
 
-            # (2) 웨이포인트 계산 및 스킵 판정
-            real_target = self.global_path[self.wp_idx]
-            dx = real_target[0] - curr_x
-            dy = real_target[1] - curr_y
-            dist = np.hypot(dx, dy)
-            # 목표와의 각도 차이 계산 (등 뒤에 있는지 확인용)
-            target_angle = np.arctan2(dy, dx)
-            angle_diff = target_angle - self.current_pose_yaw
-            while angle_diff > np.pi: angle_diff -= 2*np.pi
-            while angle_diff < -np.pi: angle_diff += 2*np.pi
-
-            # 도달 판정
-            arrival_threshold = 0.5 
-
-            if dist < arrival_threshold:
+            # 2. 도착 판정 (Stop & Turn을 위해 조금 더 엄격하게 0.4m)
+            dist = np.hypot(target[0] - curr_x, target[1] - curr_y)
+            if dist < 0.4: 
                 self.wp_idx += 1
                 return
-            # 등 뒤 스킵 (Behind Checkook_dis) 
-            if dist < 1.0 and abs(angle_diff) > 2.0:
-                self.wp_idx += 1
-                return
-            # (3) 제어용 각도 계산 (Look Ahead 타겟 기준)
+
+            # 3. 각도 오차 계산
             dx = target[0] - curr_x
             dy = target[1] - curr_y
             desired_yaw = np.arctan2(dy, dx)
             yaw_err = desired_yaw - self.current_pose_yaw
+            
+            # 각도 정규화 (-PI ~ PI)
             while yaw_err > np.pi: yaw_err -= 2*np.pi
             while yaw_err < -np.pi: yaw_err += 2*np.pi
-            # (4) 제어 로직 (속도 조절)
-            if abs(yaw_err) < 0.05:
-                target_ang = 0.0
-            else:
-                target_ang = np.clip(yaw_err * 1.5, -2.0, 2.0)
 
-            # 전진: 
-            #     ㄷ자 코너에서는 조금만 비스듬히 가도 벽을 긁기 때문에 세밀히 조정
-            if abs(yaw_err) > 0.4:  
-                target_lin = 0.0 
-            else:
-                # 각도가 완벽하게 맞으면 출발하되,
-                # 아직 거리가 멀면 빠르게(0.8), 가까우면 천천히(0.2)
-                target_lin = 0.6 if dist > 0.5 else 0.2
-            # (C) 필터: 속도와 회전 값에 대한 반응속도. 값이 낮을수록 반응도 낮음.
-            alpha_lin = 0.1 
-            alpha_ang = 0.4 # 회전 반응 속도 
-
-            self.current_linear_val = (target_lin * alpha_lin) + (self.current_linear_val * (1 - alpha_lin))
-            self.current_angular_val = (target_ang * alpha_ang) + (self.current_angular_val * (1 - alpha_ang))
-            if abs(self.current_angular_val) < 0.01: self.current_angular_val = 0.0
+            # 4. 제어 로직 (이원화)
             
-            twist.linear.x = float(self.current_linear_val)
-            twist.angular.z = float(self.current_angular_val)
+            # (A) 각도가 많이 틀어졌으면 (약 5도 이상) -> 제자리 회전만 수행!
+            # 0.1 rad = 약 5.7도
+            if abs(yaw_err) > 0.1: 
+                twist.linear.x = 0.0 # 전진 금지
+                
+                # P-Controller로 회전 속도 조절 (최대 1.5)
+                # 오차가 클수록 빠르게, 작을수록 정밀하게
+                twist.angular.z = np.clip(yaw_err * 2.0, -1.5, 1.5)
+                
+                # 모터가 너무 약하게 돌아서 멈추는 것 방지 (최소 힘 보장)
+                if 0 < twist.angular.z < 0.3: twist.angular.z = 0.3
+                if -0.3 < twist.angular.z < 0: twist.angular.z = -0.3
+                
+            # (B) 각도가 맞으면 (5도 이내) -> 직진만 수행!
+            else:
+                twist.linear.x = 0.5 # 작업 속도
+                
+                # 미세한 각도 보정은 하면서 직진 (직진성을 위해 P gain 낮게)
+                twist.angular.z = np.clip(yaw_err * 0.5, -0.5, 0.5)
+            
+            # 명령 발행
+            self.cmd_vel_publisher.publish(twist)
 
             # =========================================================
             #  5. 스마트 감시견 (Smart Watchdog)
@@ -800,12 +796,10 @@ class AiControllerNode(Node):
             # [안전 장치] 1.0m 이내 후진 로직은 유지 (최후의 보루)
             if current_human_dist < 0.7:
                 self.get_logger().warn("🚨 TOO CLOSE! Backing up...", throttle_duration_sec=1.0)
-                twist.linear.x = -0.4
+                twist.linear.x = -0.6
                 twist.angular.z = 0.0
                 self.cmd_vel_publisher.publish(twist)
                 return 
-
-            # (기존의 시간 기반 탈출 조건 삭제됨 -> 위쪽 전역 체크에서 처리함)
 
             # 2. PPO 실행 (Action Locking 유지)
             if self.ppo_model:
@@ -815,23 +809,35 @@ class AiControllerNode(Node):
                 if self.action_lock_timer > 0:
                     action = self.locked_action
                     self.action_lock_timer -= 1
-                
+                    # 락이 걸려있을 때는 추론 타이머도 리셋 (락 끝나고 바로 추론하도록)
+                    self.ppo_inference_timer = 0 
                 # (B) 락이 없으면
                 else:
-                    obs = self.build_state_for_ppo()
-                    with torch.no_grad():
-                        tensor = torch.FloatTensor(obs).unsqueeze(0)
-                        logits, _ = self.ppo_model(tensor)
-                        action = torch.argmax(logits).item()
-                    
-                    # 회전(1, 3) 시 0.5초 락킹
-                    if action == 1 or action == 3:
-                        self.action_lock_timer = 5 
-                        self.locked_action = action
-                        self.get_logger().info(f"Action Lock: {action}")
-                    elif action == 2:
-                        self.action_lock_timer = 3
-                        self.locked_action = action
+                    self.ppo_inference_timer += 1
+                    # 지정된 주기(3틱)가 되었을 때만 AI에게 물어봄
+                    if self.ppo_inference_timer >= self.PPO_INTERVAL:
+                        obs = self.build_state_for_ppo()
+                        with torch.no_grad():
+                            tensor = torch.FloatTensor(obs).unsqueeze(0)
+                            logits, _ = self.ppo_model(tensor)
+                            action = torch.argmax(logits).item()
+                        
+                        # 결정된 행동 저장 및 타이머 리셋
+                        self.last_ppo_action = action
+                        self.ppo_inference_timer = 0
+                        
+                        # [액션 락] 회전(1, 3)이 나오면 좀 더 길게 유지 (기존 로직)
+                        if action == 1 or action == 3:
+                            self.action_lock_timer = 5 
+                            self.locked_action = action
+                            self.get_logger().info(f"Action Lock: {action}")
+                        elif action == 2:
+                            self.action_lock_timer = 3
+                            self.locked_action = action
+                            
+                    else:
+                        # 주기가 안 되었으면 '아까 했던 거' 계속 함
+                        action = self.last_ppo_action
 
                 lx, az = self.params.ACTION_MAP[action]
                 twist.linear.x = lx
