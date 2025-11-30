@@ -41,14 +41,14 @@ class AIParams:
 
     # 진입: 1.0m * 2 = 2.0m (이 안으로 들어오면 PPO 켜짐)
     # 해제: 1.4m * 2 = 2.8m (이 밖으로 나가야 PPO 꺼짐)
-    PPO_ENTER_DIST = 2.0  
-    PPO_EXIT_DIST  = 3.0
+    PPO_ENTER_DIST = 1.5  
+    PPO_EXIT_DIST  = 2.0
 
     ACTION_MAP = {
         0: (0.5, 0.0),   # 전진
-        1: (0.2, 1.2),   # 좌회전
+        1: (0.1, 1.2),   # 좌회전
         2: (-0.6, 0.0),  # 후진
-        3: (0.2, -1.2),  # 우회전
+        3: (0.1, -1.2),  # 우회전
         4: (0.0, 0.0),   # 정지
     }
     DANGER_M = 2.0 
@@ -116,6 +116,11 @@ class AiControllerNode(Node):
         self.wp_stuck_timer = 0
 
         self.planning_fail_count = 0
+
+        # 교착 상태(Stuck) 판단용 변수
+        self.ppo_entry_time = 0.0       # PPO 진입 시각
+        self.ppo_entry_pos = None       # PPO 진입 시 위치
+        self.is_stuck = False           # 현재 교착 상태인가?
         
         # --- 사람 감지 타이머 ---
         self.human_detect_timer = 0.0
@@ -128,6 +133,10 @@ class AiControllerNode(Node):
         self.map_data = None
         self.map_info = None
         self.GRID_SIZE_M = 0.8 
+
+        # 위험 구역(사람이 머물렀던 자리) 좌표 저장소
+        # 형식: [(x, y), (x, y), ...] (World 좌표계)
+        self.danger_zones = []
         
         # 액션 락(Lock)을 위한 타이머와 저장소
         self.action_lock_timer = 0  # 이 값이 0보다 크면 AI 판단을 생략하고 이전 행동 반복
@@ -329,7 +338,24 @@ class AiControllerNode(Node):
             else:
                 self.get_logger().error("CRITICAL: Stuck in walls!")
                 return False
-
+        #  위험 구역(Danger Zone)을 벽(1)으로 칠하기
+        for (dx, dy) in self.danger_zones:
+            # World 좌표 -> Grid 인덱스 변환
+            # generate_path_from_map 함수 내의 변수(fixed_ox, grid_res) 사용
+            d_col = int((dx - fixed_ox) / grid_res)
+            d_row = int((dy - fixed_oy) / grid_res)
+            
+            # 위험 반경 (예: 1.0m) -> 격자 칸 수
+            radius_cells = int(1.5 / grid_res) 
+            
+            # 사각형 형태로 벽 칠하기 (원형보다 계산 빠름)
+            r_min = max(0, d_row - radius_cells)
+            r_max = min(new_h, d_row + radius_cells + 1)
+            c_min = max(0, d_col - radius_cells)
+            c_max = min(new_w, d_col + radius_cells + 1)
+            
+            # 해당 영역을 벽(1)으로 설정 -> Planner가 여기로 경로 안 짬
+            planner_grid[r_min:r_max, c_min:c_max] = 1
         # [강제 초기화] 시작점은 무조건 빈 공간으로 설정
         if 0 <= start_r < new_h and 0 <= start_c < new_w:
             planner_grid[start_r, start_c] = 0 
@@ -435,7 +461,7 @@ class AiControllerNode(Node):
             target_obs = self.latest_obstacle_data
 
         if target_obs and target_obs.detected:
-             fake_dist = max(0.0, target_obs.distance - 1.0)
+             fake_dist = max(0.0, target_obs.distance - 0.5)
              d = min(fake_dist, self.params.R_OBJ_M) / self.params.R_OBJ_M
              # d = min(target_obs.distance, self.params.R_OBJ_M) / self.params.R_OBJ_M
              ang = np.deg2rad(target_obs.angle)
@@ -481,29 +507,77 @@ class AiControllerNode(Node):
         if self.latest_human_data:
             current_human_dist = self.latest_human_data.distance
 
-        # ------------------------------------------------------------------
-        # [수정] 전역 상태 전이 (거리 기반 히스테리시스)
-        # ------------------------------------------------------------------
-        
-        # (A) 진입 조건: 평상시인데, 사람이 진입 거리(2.0m)보다 가까워지면 -> PPO ON
-        if self.current_state != State.PPO_HUMAN_AVOID:
-            if current_human_dist < self.params.PPO_ENTER_DIST:
-                self.get_logger().warn(f"🚨 HUMAN NEAR ({current_human_dist:.1f}m)! PPO ON.")
-                self.current_state = State.PPO_HUMAN_AVOID
-                self.action_lock_timer = 0 # 액션 락 초기화
-        
-        # (B) 해제 조건: PPO 중인데, 사람이 해제 거리(2.8m)보다 멀어지거나 사라지면 -> PPO OFF
-        elif self.current_state == State.PPO_HUMAN_AVOID:
-            # 사람이 아예 사라졌거나(None) or 안전 거리(2.8m) 밖으로 나갔으면
-            if self.latest_human_data is None or current_human_dist > self.params.PPO_EXIT_DIST:
-                self.get_logger().info(f"✅ Human Safe ({current_human_dist:.1f}m). Return to Plan.")
+            # ------------------------------------------------------------------
+            #  전역 상태 전이 (거리 기반 히스테리시스)
+            # ------------------------------------------------------------------
+            
+            # 사람의 현재 월드 좌표 계산 (로봇 위치 + 상대 좌표)
+            # 주의: 정확한 World 좌표를 구하려면 TF 변환이 필요하지만, 
+            # 약식으로 (로봇위치 + 상대위치)를 사용합니다.
+            
+            h_dist = self.latest_human_data.distance
+            h_angle = np.deg2rad(self.latest_human_data.angle) # degree -> radian
+            
+            # 로봇의 현재 yaw(헤딩)까지 고려해야 월드 좌표가 나옴
+            global_angle = self.current_pose_yaw + h_angle
+            
+            human_wx = self.current_pose_xy[0] + (h_dist * np.cos(global_angle))
+            human_wy = self.current_pose_xy[1] + (h_dist * np.sin(global_angle))
+            
+            current_human_pos = np.array([human_wx, human_wy])
+
+            # -----------------------------------------------------
+            # [위험 구역 생성]
+            # PPO 모드(회피 중)라면, 현재 사람 위치를 위험 구역으로 등록
+            # 너무 촘촘하게 찍지 않도록, 기존 구역과 1.0m 이상 떨어져야 찍음
+            if self.current_state == State.PPO_HUMAN_AVOID and self.is_stuck:
+                is_new_zone = True
+                for zone in self.danger_zones:
+                    if np.linalg.norm(np.array(zone) - current_human_pos) < 1.0:
+                        is_new_zone = False
+                        break
                 
-                # 안전해지면 다시 경로 계획부터 시작
-                self.current_state = State.PLANNING
-                self.global_path = []
-                self.latest_human_data = None
-                self.action_lock_timer = 0
-                return # 이번 턴 종료
+                if is_new_zone:
+                    self.danger_zones.append((human_wx, human_wy))
+                    self.get_logger().info(f"🚫 Danger Zone Added at ({human_wx:.1f}, {human_wy:.1f})")
+
+            # -----------------------------------------------------
+            # [위험 구역 해제]
+            # 사람이 특정 위험 구역에서 3.0m 이상 멀어지면, 그 구역은 해제(삭제)
+            # 리스트를 순회하며 남길 것만 남김 (Filter)
+            active_zones = []
+            for zone in self.danger_zones:
+                dist_to_zone = np.linalg.norm(np.array(zone) - current_human_pos)
+                if dist_to_zone < 5.0: # 아직 사람이 근처에 있으면 유지
+                    active_zones.append(zone)
+                else:
+                    # 멀어지면 삭제됨 (로그 생략 가능)
+                    pass
+                
+            self.danger_zones = active_zones
+            # (A) 진입 조건: 평상시인데, 사람이 진입 거리(2.0m)보다 가까워지면 -> PPO ON
+            if self.current_state != State.PPO_HUMAN_AVOID:
+                if current_human_dist < self.params.PPO_ENTER_DIST:
+                    self.get_logger().warn(f"🚨 HUMAN NEAR ({current_human_dist:.1f}m)! PPO ON.")
+                    # 진입 시점 기록 (Stuck 판단용)
+                    self.current_state = State.PPO_HUMAN_AVOID
+                    self.ppo_entry_time = self.get_clock().now().nanoseconds / 1e9
+                    self.ppo_entry_pos = self.current_pose_xy.copy()
+                    self.is_stuck = False # 초기화
+                    self.action_lock_timer = 0 
+            
+            # (B) 해제 조건: PPO 중인데, 사람이 해제 거리(2.8m)보다 멀어지거나 사라지면 -> PPO OFF
+            elif self.current_state == State.PPO_HUMAN_AVOID:
+                # 사람이 아예 사라졌거나(None) or 안전 거리(2.8m) 밖으로 나갔으면
+                if self.latest_human_data is None or current_human_dist > self.params.PPO_EXIT_DIST:
+                    self.get_logger().info(f"✅ Human Safe ({current_human_dist:.1f}m). Return to Plan.")
+                    
+                    # 안전해지면 다시 경로 계획부터 시작
+                    self.current_state = State.PLANNING
+                    self.global_path = []
+                    self.latest_human_data = None
+                    self.action_lock_timer = 0
+                    return # 이번 턴 종료
     
         # --- 상태 머신 ---
         # 지도 올 때까지 정지
@@ -710,6 +784,19 @@ class AiControllerNode(Node):
         # =================================================================
         elif self.current_state == State.PPO_HUMAN_AVOID:
             
+            #  교착 상태(Stuck) 판단 로직
+            current_time = self.get_clock().now().nanoseconds / 1e9
+            time_elapsed = current_time - self.ppo_entry_time
+            
+            # PPO 진입 후 3초가 지났는데
+            if time_elapsed > 3.0:
+                dist_moved = np.linalg.norm(self.current_pose_xy - self.ppo_entry_pos)
+                # 이동 거리가 0.5m 미만이면 -> Stuck!
+                if dist_moved < 0.5:
+                    if not self.is_stuck:
+                        self.get_logger().error("🧱 STUCK Detected! Creating Danger Zone.")
+                        self.is_stuck = True
+
             # [안전 장치] 1.0m 이내 후진 로직은 유지 (최후의 보루)
             if current_human_dist < 0.7:
                 self.get_logger().warn("🚨 TOO CLOSE! Backing up...", throttle_duration_sec=1.0)
